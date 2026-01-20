@@ -1,0 +1,6 @@
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b4c57c1eba80ce799de8e40e1f5913e6).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : Jonathan Bolbynsky#2119
+INFO:jonathan_bot:ID : 1463098594016886969
