@@ -1,6 +1,161 @@
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 19:37:25.089889]
+
+
 WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
 INFO:discord.client:logging in using static token
-INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b4c57c1eba80ce799de8e40e1f5913e6).
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 67f0d55507c8b26da5859d5c07aef9dd).
 INFO:jonathan_bot:Bot connected :
-INFO:jonathan_bot:User : Jonathan Bolbynsky#2119
-INFO:jonathan_bot:ID : 1463098594016886969
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:roll triggered by [703959508489207838] at [2026-01-20 19:38:01.277904] arg1 [3] arg2 [4]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 19:44:23.664800]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: c249764567e1e6b23837bfd42dc428fd).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.app_commands.tree:Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/app_commands/tree.py", line 1138, in wrapper
+    await self._call(interaction)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/app_commands/tree.py", line 1270, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/app_commands/tree.py", line 1174, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'test' not found
+INFO:jonathan_bot:dance triggered by [703959508489207838] at [2026-01-20 20:04:28.897542]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 21:14:38.867496]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 184e585ae840b8fff6e3ad6ac9642bc3).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command tips
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 62, in tips
+    result = cmdf.tips()
+             ^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/commandFunctions.py", line 15, in tips
+    rtip1 = tipsList["game"][r.randint(0, len(tipsList["game"]))]
+            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: IndexError: list index out of range
+ERROR:discord.ext.commands.bot:Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "tip" is not found
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 21:18:02.994477]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 611e45ea4104c367edd760a65fcac8fb).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 21:19:21.185556]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 562c69c97806bfb1ddd116ab2a35a48a).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 21:22:25.563140]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 68e23316f08e9c3d5923812e51c9d66e).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "tipqs" is not found
+ERROR:discord.ext.commands.bot:Ignoring exception in command tips
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 62, in tips
+    result = cmdf.tips()
+             ^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/commandFunctions.py", line 16, in tips
+    rtip2 = tipsList["real"][r.randint(0, len(tipsList["real"]))]
+            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+IndexError: list index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: IndexError: list index out of range
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 21:24:49.368245]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 1159a4fd74509c4ffd7f8a8050f4f3c2).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command tips
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 62, in tips
+    result = cmdf.tips()
+             ^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/commandFunctions.py", line 15, in tips
+    rtip1 = tipsList["game"][r.randint(0, len(tipsList["game"] - 1))]
+                                              ~~~~~~~~~~~~~~~~~^~~
+TypeError: unsupported operand type(s) for -: 'list' and 'int'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: TypeError: unsupported operand type(s) for -: 'list' and 'int'
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-20 21:28:30.389943]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 5dd38e0b21434570c111e81fbcfedf24).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:token triggered by [703959508489207838] at [2026-01-20 21:30:10.657505]
