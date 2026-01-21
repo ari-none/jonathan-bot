@@ -293,3 +293,470 @@ Traceback (most recent call last):
   File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1174, in _get_app_command_options
     raise CommandNotFound(name, parents)
 discord.app_commands.errors.CommandNotFound: Application command 'challenge' not found
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 21:27:20.531770]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 47c069ad7176da0b8039440cf8d2f570).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command coolness
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1056, in invoke
+    await self.prepare(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 973, in prepare
+    await self._parse_arguments(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 880, in _parse_arguments
+    transformed = await self.transform(ctx, param, attachments)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 732, in transform
+    raise MissingRequiredArgument(param)
+discord.ext.commands.errors.MissingRequiredArgument: user is a required argument that is missing.
+ERROR:discord.ext.commands.bot:Ignoring exception in command coolness
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1056, in invoke
+    await self.prepare(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 973, in prepare
+    await self._parse_arguments(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 880, in _parse_arguments
+    transformed = await self.transform(ctx, param, attachments)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 732, in transform
+    raise MissingRequiredArgument(param)
+discord.ext.commands.errors.MissingRequiredArgument: user is a required argument that is missing.
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 21:30:06.134597]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 5d2c46c5672f8f922805ffb88dd91930).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 21:31:47.800534]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: e71ff79821579309b5e97a537219fb42).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 21:34:59.516811]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: f19a76d64b66afab44f69a20c442e63d).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 21:40:43.191605]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 55531febb1cbc913da446c4c16e6a5ce).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.app_commands.tree:Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/app_commands/tree.py", line 1138, in wrapper
+    await self._call(interaction)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/app_commands/tree.py", line 1270, in _call
+    command, options = self._get_app_command_options(data)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/app_commands/tree.py", line 1174, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'challenge' not found
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 22:18:21.362898]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 77fdf287d5f06125b3d954274e008fd2).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:13:11.353112]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 61b8670eb447b3838523da17536c8267).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='discord.py: on_message' coro=<Client._run_event() done, defined at /home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py:496> exception=SystemExit(None)>
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/main.py", line 97, in <module>
+    bot.run(getenv("DISCORD_TOKEN"))
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py", line 929, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py", line 504, in _run_event
+    await coro(*args, **kwargs)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1421, in on_message
+    await self.process_commands(message)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1418, in process_commands
+    await self.invoke(ctx)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 92, in goodnight
+    exit()
+  File "<frozen _sitebuiltins>", line 26, in __call__
+SystemExit: None
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:30:37.322310]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: a751d12a42665186140a6774812df38e).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:31:24.204717]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 4c5b4011ff20f8dc16018d1248867139).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:31:51.101437]
+ERROR:discord.ext.commands.bot:Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "restart" is not found
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:32:09.998296]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 115, in restart
+    os.execv("main.py", [])
+ValueError: execv() arg 2 must not be empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ValueError: execv() arg 2 must not be empty
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:33:31.867467]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 115, in restart
+    os.execv("main.py", [])
+ValueError: execv() arg 2 must not be empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ValueError: execv() arg 2 must not be empty
+ERROR:discord.ext.commands.bot:Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "t" is not found
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:34:00.857078]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 115, in restart
+    os.execv("main.py", [])
+ValueError: execv() arg 2 must not be empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ValueError: execv() arg 2 must not be empty
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:34:50.428967]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 008a8160fbf00b324a01204c50d5dd32).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:35:00.989420]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 115, in restart
+    os.execv("./main.py", [""])
+ValueError: execv() arg 2 first element cannot be empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ValueError: execv() arg 2 first element cannot be empty
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:35:33.968707]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 115, in restart
+    os.execv("./main.py", [""])
+ValueError: execv() arg 2 first element cannot be empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ValueError: execv() arg 2 first element cannot be empty
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:36:37.795659]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 115, in restart
+    os.execv("./main.py", [""])
+ValueError: execv() arg 2 first element cannot be empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: ValueError: execv() arg 2 first element cannot be empty
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:38:14.494711]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: ec05cbf1b5f1c22b54254fc2f8260f08).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:38:56.662136]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 116, in restart
+    os.execv(sys.argv[0], sys.argv)
+PermissionError: [Errno 13] Permission denied
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: PermissionError: [Errno 13] Permission denied
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:41:49.369074]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: cb9ba3c085ab3d74d006e8d45803fdc3).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:42:16.621723]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:42:17.219599]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: b1285024f25dcb67f01aa158485694b2).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:42:55.387085]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:42:55.856059]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 956132eabbb80f0b6936552ee638a7f4).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "embedtest" is not found
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:43:20.725323]
+ERROR:asyncio:Task exception was never retrieved
+future: <Task finished name='discord.py: on_message' coro=<Client._run_event() done, defined at /home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py:496> exception=SystemExit(None)>
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/main.py", line 123, in <module>
+    bot.run(getenv("DISCORD_TOKEN"))
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py", line 929, in run
+    asyncio.run(runner())
+  File "/usr/lib/python3.12/asyncio/runners.py", line 194, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 674, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 641, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1987, in _run_once
+    handle._run()
+  File "/usr/lib/python3.12/asyncio/events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py", line 504, in _run_event
+    await coro(*args, **kwargs)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1421, in on_message
+    await self.process_commands(message)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1418, in process_commands
+    await self.invoke(ctx)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 106, in sleep
+    exit()
+  File "<frozen _sitebuiltins>", line 26, in __call__
+SystemExit: None
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:46:19.431918]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 5b68a8546b3a4195a9e9e4b1bf64f3f7).
+ERROR:discord.client:Ignoring exception in on_ready
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/client.py", line 504, in _run_event
+    await coro(*args, **kwargs)
+  File "/home/arinone/Projects/JonathanBot/main.py", line 37, in on_ready
+    bot.status.value = bot.status.online
+                       ^^^^^^^^^^^^^^^^^
+AttributeError: '_EnumValue_Status' object has no attribute 'online'
+INFO:jonathan_bot:technical triggered by [703959508489207838] at [2026-01-21 23:51:17.807389]
+ERROR:discord.ext.commands.bot:Ignoring exception in command technical restart
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 118, in restart
+    """Makes me restart if sent by Arinone."""
+                           ^^^^^^^^^^^^^^^
+AttributeError: '_EnumValue_Status' object has no attribute 'idle'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1680, in invoke
+    await ctx.invoked_subcommand.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.12/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: AttributeError: '_EnumValue_Status' object has no attribute 'idle'
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 23:51:32.411399]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 7f7b9b1986992c8f45c1daf053b9a0af).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:coolness triggered by [703959508489207838] at [2026-01-21 23:53:16.169771] with arg1 [966406337976238131]
+INFO:jonathan_bot:coolness triggered by [703959508489207838] at [2026-01-21 23:53:25.354206] with arg1 [966406337976238131]
+INFO:jonathan_bot:coolness triggered by [754630919490633760] at [2026-01-21 23:53:45.827264] with arg1 [754630919490633760]

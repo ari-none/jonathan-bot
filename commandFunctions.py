@@ -31,13 +31,13 @@ def coolness_rd(user: User) -> str:
     val = r.randint(0, 100)
     if val == 100:
         return "[100%] The coolest user you'll ever see :sunglasses:"
-    elif val >= 85:
+    elif val >= 75:
         return f"[{val}%] {user.display_name} is really cool ! :star2:"
-    elif val >= 60:
+    elif val >= 50:
         return f"[{val}%] {user.display_name} is pretty cool actually :kissing_smiling_eyes:"
-    elif val >= 45:
-        return f"[{val}%] I guess {user.display_name} is somewhat okay :neutral_face:"
     elif val >= 30:
+        return f"[{val}%] I guess {user.display_name} is somewhat okay :neutral_face:"
+    elif val >= 15:
         return f"[{val}%] {user.display_name} ain't cool."
     elif val >= 1:
         return f"[{val}%] {user.display_name} REALLY ain't cool."
@@ -45,7 +45,7 @@ def coolness_rd(user: User) -> str:
         return f"[{val}%] {user.display_name} ! GET YOUR BITCH ASS OUT !"
 
 def coolness(user: User) -> tuple[Embed, bool]:
-    if True: #TODO: Fix
+    if not user:
         return Embed(), False
 
     emb = Embed(color=Color.green(), title="Coolness meter")
