@@ -45,7 +45,7 @@ def coolness_rd(user: User) -> str:
         return f"[{val}%] {user.display_name} ! GET YOUR BITCH ASS OUT !"
 
 def coolness(user: User) -> tuple[Embed, bool]:
-    if type(user) != User:
+    if True: #TODO: Fix
         return Embed(), False
 
     emb = Embed(color=Color.green(), title="Coolness meter")

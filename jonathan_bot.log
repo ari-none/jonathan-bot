@@ -159,3 +159,137 @@ INFO:jonathan_bot:Bot connected :
 INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
 INFO:jonathan_bot:ID : [1463098594016886969]
 INFO:jonathan_bot:token triggered by [703959508489207838] at [2026-01-20 21:30:10.657505]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 08:52:17.393506]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: a74e9a92bfe381a319bcb309b2cfb9b3).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command None
+discord.ext.commands.errors.CommandNotFound: Command "embed" is not found
+ERROR:discord.ext.commands.bot:Ignoring exception in command embedtest
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 74, in embedtest
+    await ctx.send(embed=Embed(color=Color.from_rgb(255, 255, 0), title="Embed test", description="A test embed, with a cute eevee pic there", url=File("./media/eeveegun.jpg")))
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/context.py", line 1102, in send
+    return await super().send(
+           ^^^^^^^^^^^^^^^^^^^
+    ...<16 lines>...
+    )  # type: ignore # The overloads don't support Optional but the implementation does
+    ^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/abc.py", line 1703, in send
+    data = await state.http.send_message(channel.id, params=params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/http.py", line 773, in request
+    raise HTTPException(response, data)
+discord.errors.HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.url: Scheme "<discord.file.file object at 0x7ff1afe38580>" is not supported. Scheme must be one of ('http', 'https'). Not a well formed URL.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: HTTPException: 400 Bad Request (error code: 50035): Invalid Form Body
+In embeds.0.url: Scheme "<discord.file.file object at 0x7ff1afe38580>" is not supported. Scheme must be one of ('http', 'https'). Not a well formed URL.
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 08:56:41.040550]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 09:15:44.756209]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: cbc225ecebb6ffa8d70b1cce13b81ff3).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 09:19:45.098906]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 748c65c340b7dfd5f72799996d2c9c97).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 09:24:01.562796]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 9339d0475caa118907e71dccb82fcf19).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.ext.commands.bot:Ignoring exception in command embedtest
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/core.py", line 266, in wrapped
+    ret = await coro(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/main.py", line 75, in embedtest
+    emb.set_image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F02%2Fpokemon-eevee-standard-shiny.jpg&f=1&nofb=1&ipt=37238d99e1282e95d67e98b6e965908e2de51bf865fa704ec900b111ab48f553")
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Embed.set_image() takes 1 positional argument but 2 were given
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/bot.py", line 1376, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/core.py", line 1064, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/ext/commands/core.py", line 275, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: TypeError: Embed.set_image() takes 1 positional argument but 2 were given
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 09:26:35.412759]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 20d03163f54fff6a76aad7cf66bd66eb).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+INFO:jonathan_bot:Jonathan bot script started at [2026-01-21 15:44:37.237752]
+
+
+WARNING:discord.client:PyNaCl is not installed, voice will NOT be supported
+INFO:discord.client:logging in using static token
+INFO:discord.gateway:Shard ID None has connected to Gateway (Session ID: 0bd30f6d8dd0b1f450113218c59010cd).
+INFO:jonathan_bot:Bot connected :
+INFO:jonathan_bot:User : [Jonathan Bolbynsky#2119]
+INFO:jonathan_bot:ID : [1463098594016886969]
+ERROR:discord.app_commands.tree:Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1138, in wrapper
+    await self._call(interaction)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1270, in _call
+    command, options = self._get_app_command_options(data)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1174, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'test' not found
+ERROR:discord.app_commands.tree:Ignoring exception in command tree
+Traceback (most recent call last):
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1138, in wrapper
+    await self._call(interaction)
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1270, in _call
+    command, options = self._get_app_command_options(data)
+                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/arinone/Projects/JonathanBot/.venv/lib/python3.13/site-packages/discord/app_commands/tree.py", line 1174, in _get_app_command_options
+    raise CommandNotFound(name, parents)
+discord.app_commands.errors.CommandNotFound: Application command 'challenge' not found
