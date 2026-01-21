@@ -3,7 +3,7 @@ import commandFunctions as cmdf
 import discord
 import logging
 from datetime import datetime
-from discord import File
+from discord import File, Embed, Color, User
 from discord.ext import commands
 from discord.ext.commands.context import Context
 from dotenv import load_dotenv
@@ -67,5 +67,22 @@ async def token(ctx: Context):
     """Grabs this bot's token."""
     await ctx.message.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File("./media/eeveegun.jpg"))
     log.info(f"token triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+
+@bot.command()
+async def embedtest(ctx: Context):
+    """Testing embeds"""
+    emb = Embed(color=Color.from_rgb(255, 255, 0), title="Embed test", description="A test embed, with a cute eevee pic there")
+    emb.set_image(url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F02%2Fpokemon-eevee-standard-shiny.jpg&f=1&nofb=1&ipt=37238d99e1282e95d67e98b6e965908e2de51bf865fa704ec900b111ab48f553")
+    await ctx.send(embed=emb)
+
+@bot.command()
+async def coolness(ctx: Context, user:User):
+    """Tests how cool an user is."""
+    emb, success = cmdf.coolness(ctx.message.author)
+    if success:
+        await ctx.send(embed=emb)
+    else:
+        await ctx.send("You must mention an user in order to rate them !")
+
 
 bot.run(getenv("DISCORD_TOKEN"))
