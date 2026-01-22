@@ -150,6 +150,7 @@ async def read(ctx: Context):
 
 @messager.command()
 async def report(ctx: Context):
+    """Sends a report of the latest message to Arinone."""
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
     if banlist[ctx.message.author.id] is not None:
@@ -158,6 +159,8 @@ async def report(ctx: Context):
 
     with open("jsonfiles/memory.json") as f:
         mem = json.load(f)
+    if mem["messager_user"] == 0 or mem["messager_user"] is None:
+        await ctx.send("There's no messages to report !")
 
     ari = await bot.fetch_user(703959508489207838)
     emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=mem[f"This message was written by <@{mem["messager_user"]}> from {g}"])
