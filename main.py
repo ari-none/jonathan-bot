@@ -13,7 +13,7 @@ from dotenv import load_dotenv
 from os import getenv
 
 # Setting up logger
-logging.basicConfig(filename='jonathan_bot.log', level=logging.INFO)
+logging.basicConfig(filename=f'logs/jonathan_bot_{datetime.now()}.log', level=logging.INFO)
 log = logging.getLogger("jonathan_bot")
 log.info(f"Jonathan bot script started at [{datetime.now()}]\n\n")
 
@@ -49,7 +49,7 @@ async def ping(ctx: Context):
     await ctx.message.reply(f"Pong ! Responsive as (nearly) always, {ctx.message.author}", mention_author=True)
     log.info(f"ping triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@bot.command()
+@bot.command(aliases=["dice", "diceroll", "rolldice"])
 async def roll(ctx: Context, dices: int = 1, faces: int = 20):
     """Rolls dices."""
     result = cmdf.diceroll(dices, faces)
@@ -62,7 +62,7 @@ async def dance(ctx: Context):
     await ctx.send(file=File("./media/jonathan_dance.gif"))
     log.info(f"dance triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@bot.command()
+@bot.command(aliases=["tip"])
 async def tips(ctx: Context):
     """Gives random Aced Beyond tips alongside some real world tips."""
     result = cmdf.tips()

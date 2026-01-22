@@ -73,7 +73,13 @@ def coolness(user: User) -> tuple[Embed, bool]:
             emb.description = f"[100%] Forob cool. Forob nimble. Forob quick. :fire:"
             return emb, True
         case 1080187557498851478:
-            emb.description = f"[100%] Funny wheel guy. I like your vids. Also don't worry about the haters, they're as unintelligent as Jeepsy."
+            emb.description = f"[100%] Funny wheel guy. I like your vids. Also don't worry about the haters, they're as unintelligent as rooms fetuses."
+            return emb, True
+        case 1334941225538686996:
+            emb.description = f"[100%] Really cool, please make my shop's music theme for Aced Beyond :pray::pray:"
+            return emb, True
+        case 1268111519909154919:
+            emb.description = f"[50%] Could've been cooler if you could properly type in my commands with the correct syntax :confused:"
             return emb, True
         case _:
             emb.description = coolness_rd(user)
