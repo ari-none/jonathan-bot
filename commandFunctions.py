@@ -3,6 +3,7 @@ import json
 from discord import User, Embed, Color
 
 
+
 def diceroll(dices: int, faces: int) -> str:
     dices = max(dices, 1)
     faces = max(faces, 1)
@@ -14,7 +15,7 @@ def diceroll(dices: int, faces: int) -> str:
 
 
 
-with open("./jsonfiles/tips.json", "w") as f:
+with open("jsonfiles/tips.json", "r") as f:
     tipsList = json.load(f)
 def tips() -> str:
     rtip1 = tipsList["game"][r.randint(0, len(tipsList["game"]) - 1)]
