@@ -250,7 +250,7 @@ async def messageas(ctx: Context, *messageWrite: str):
         msg = ""
         for s in messageWrite:
             msg += s + " "
-            await ctx.send(msg)
+        await ctx.send(msg)
     await ctx.message.delete()
 
 
