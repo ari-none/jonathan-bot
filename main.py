@@ -244,6 +244,15 @@ async def restart(ctx: Context):
         await ctx.send("Nuh uh, only Arinone can tell me to restart.")
     log.info(f"technical restart triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
+@bot.command(aliases=["m"], hidden=True)
+async def messageas(ctx: Context, *messageWrite: str):
+    if ctx.message.author.id == 703959508489207838:
+        msg = ""
+        for s in messageWrite:
+            msg += s + " "
+            await ctx.send(msg)
+    await ctx.message.delete()
+
 
 
 bot.run(getenv("DISCORD_TOKEN"))
