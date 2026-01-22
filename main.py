@@ -189,7 +189,7 @@ async def ban(ctx: Context, user: User):
 
         with open("jsonfiles/messager_ban.json", "w") as f:
             json.dump(banlist, f, indent=2)
-        await ctx.send(f"User <@{user}> successfully banned from the Messager.")
+        await ctx.send(f"User <@{user.id}> successfully banned from the Messager.")
     else:
         await ctx.message.delete()
 
@@ -208,7 +208,7 @@ async def unban(ctx: Context, user: User):
 
         with open("jsonfiles/messager_ban.json", "w") as f:
             json.dump(banlist, f, indent=2)
-        await ctx.send(f"User <@{user}> successfully unbanned from the Messager.")
+        await ctx.send(f"User <@{user.id}> successfully unbanned from the Messager.")
     else:
         await ctx.message.delete()
 
