@@ -1,2 +1,2 @@
-jonathan_bot.log
-.venv
+*.log
+.venv/**
