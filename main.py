@@ -115,7 +115,7 @@ async def messager(ctx: Context):
         Type `j:help messager` for further help.""")
     log.info(f"messager triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@messager.command(aliases=["w"])
+@messager.command(aliases=["w", "override", "over"])
 async def write(ctx: Context, *messageWrite: str):
     """Writes a message to the messager."""
     with open("jsonfiles/messager_ban.json") as bans:
@@ -139,7 +139,7 @@ async def write(ctx: Context, *messageWrite: str):
     await ctx.send("Message written ! Use `j:messager read` to read it.")
     log.info(f"messager write triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
 
-@messager.command(aliases=["r"])
+@messager.command(aliases=["r", "show", "see", "s"])
 async def read(ctx: Context):
     """Reads the messager's message."""
     with open("jsonfiles/memory.json") as f:
@@ -193,7 +193,7 @@ async def ban(ctx: Context, user: User):
     else:
         await ctx.message.delete()
 
-@messager.command()
+@messager.command(aliases=["uban"])
 async def unban(ctx: Context, user: User):
     """Arinone-only command for unbanning users from the Messager."""
     if ctx.message.author.id == 703959508489207838:
