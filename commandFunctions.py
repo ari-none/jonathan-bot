@@ -28,7 +28,10 @@ def tips() -> str:
 
 
 def coolness_rd(user: User) -> str:
-    val = r.randint(0, 100)
+    preval = r.gauss(mu=75, sigma=40)  # center at 75
+    val = max(0, min(100, round(preval)))
+
+    # val = r.randint(0, 100) --Old code
     if val == 100:
         return "[100%] The coolest user you'll ever see :sunglasses:"
     elif val >= 75:
