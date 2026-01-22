@@ -1,5 +1,5 @@
 import random as r
-from json import loads
+import json
 from discord import User, Embed, Color
 
 
@@ -14,7 +14,8 @@ def diceroll(dices: int, faces: int) -> str:
 
 
 
-tipsList = loads(open("./jsonfiles/tips.json").read())
+with open("./jsonfiles/tips.json", "w") as f:
+    tipsList = json.load(f)
 def tips() -> str:
     rtip1 = tipsList["game"][r.randint(0, len(tipsList["game"]) - 1)]
     rtip2 = tipsList["real"][r.randint(0, len(tipsList["real"]) - 1)]
@@ -61,7 +62,7 @@ def coolness(user: User) -> tuple[Embed, bool]:
             emb.description = f"[∞%] It's me. No one's cooler than I am :sunglasses:"
             return emb, True
         case 877550294785986571:
-            emb.description = f"[0%] Nah we ain't talking about this fetus."
+            emb.description = f"[0%] Nah we ain't talking about this dud."
             return emb, True
         case 703959508489207838:
             emb.description = f"[100%] It's Arinone. Who could hate such a cute jolteon ?~ Aight ok I'll stop acting corny. Or not :upside_down:"

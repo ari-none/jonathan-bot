@@ -5,6 +5,7 @@ import sys
 import commandFunctions as cmdf
 import discord
 import logging
+import json
 from datetime import datetime
 from discord import File, Embed, Color, User, Status
 from discord.ext import commands
@@ -25,6 +26,8 @@ bot_cmdPrefix = "j:"
 bot_intents = discord.Intents.default()
 bot_intents.members = True
 bot_intents.message_content = True
+bot_intents.guilds = True
+bot_intents.guild_typing = True
 bot_desc = """Jonathan Bolbynsky bot for random stuff
 Made by Arinone"""
 
@@ -75,6 +78,12 @@ async def token(ctx: Context):
     await ctx.message.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File("./media/eeveegun.jpg"))
     log.info(f"token triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
+@bot.command()
+async def mentionid(ctx: Context, id: int):
+    """Mentions a user from the given user ID."""
+    await ctx.message.reply(f"<@{id}>")
+    log.info(f"mentionid triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+
 # @bot.command()
 # async def embedtest(ctx: Context):
 #     """Testing embeds"""
@@ -91,6 +100,114 @@ async def coolness(ctx: Context, user:User):
     else:
         await ctx.send("You must mention an user in order to rate them !")
     log.info(f"coolness triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+
+
+
+#### Messager ####
+@bot.group(aliases=["msg", "m"])
+async def messager(ctx: Context):
+    """Messager commands category."""
+    if ctx.invoked_subcommand is None:
+        await ctx.send("""Messager commands for writing messages.
+        Type `j:messager read` to get the last message.
+        Type `j:messager write <message>` to write a message that's readable by anyone (no weird stuff please).
+        Type `j:messager report` to report the latest message (and maybe ban the user if the reports are valid).
+        Type `j:help messager` for further help.""")
+    log.info(f"messager triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+
+@messager.command(aliases=["w"])
+async def write(ctx: Context, *messageWrite: str):
+    """Writes a message to the messager."""
+    with open("jsonfiles/messager_ban.json") as bans:
+        banlist = json.load(bans)
+    if banlist[ctx.message.author.id] is not None:
+        await ctx.send("You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
+        return
+
+    if not messageWrite:
+        await ctx.send("Must provide a message !")
+        return
+    msg = ""
+    for s in messageWrite:
+        msg += s+" "
+    with open("jsonfiles/memory.json", "r") as mem:
+        j = json.load(mem)
+    j["messager_message"] = msg
+    j["messager_user"] = ctx.message.author.id
+    with open("jsonfiles/memory.json", "w") as mem:
+        json.dump(j, mem, indent=2)
+    await ctx.send("Message written ! Use `j:messager read` to read it.")
+    log.info(f"messager write triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
+
+@messager.command(aliases=["r"])
+async def read(ctx: Context):
+    """Reads the messager's message."""
+    with open("jsonfiles/memory.json") as f:
+        mem = json.load(f)
+    g = ctx.guild.name if ctx.guild is not None else "somewhere"
+    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=mem[f"This message was written by <@{mem["messager_user"]}> from {g}"])
+    await ctx.send(embed=emb)
+
+@messager.command()
+async def report(ctx: Context):
+    with open("jsonfiles/messager_ban.json") as bans:
+        banlist = json.load(bans)
+    if banlist[ctx.message.author.id] is not None:
+        await ctx.send("You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
+        return
+
+    with open("jsonfiles/memory.json") as f:
+        mem = json.load(f)
+
+    ari = await bot.fetch_user(703959508489207838)
+    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=mem[f"This message was written by <@{mem["messager_user"]}> from {g}"])
+    await ari.send(f"New report from <@{ctx.message.author.id}> !!", embed=emb)
+
+    mem["messager_message"] = "No messages for now…"
+    mem["messager_user"] = 0
+
+    with open("jsonfiles/memory.json", "w") as f:
+        json.dump(f, mem, indent=2)
+
+    await ctx.send("Report submitted for the latest message ! The suspicious message has been cancelled just in case.\n**Any false reports and/or mass reports will result in a ban from the messager service.**")
+
+@messager.command()
+async def ban(ctx: Context, user: User):
+    """Arinone-only command for banning users from the Messager."""
+    if ctx.message.author.id == 703959508489207838:
+        with open("jsonfiles/messager_ban.json") as f:
+            banlist: list[int] = json.load(f)
+
+        if not banlist[user.id]:
+            banlist.append(user.id)
+        else:
+            await ctx.send(f"User <@{user.id}> is already banned !")
+            return
+
+        with open("jsonfiles/messager_ban.json", "w") as f:
+            json.dump(banlist, f)
+        await ctx.send(f"User <@{user}> successfully banned from the Messager.")
+    else:
+        await ctx.message.delete()
+
+@messager.command()
+async def unban(ctx: Context, user: User):
+    """Arinone-only command for unbanning users from the Messager."""
+    if ctx.message.author.id == 703959508489207838:
+        with open("jsonfiles/messager_ban.json") as f:
+            banlist: list[int] = json.load(f)
+
+        if banlist[user.id]:
+            banlist.remove(user.id)
+        else:
+            await ctx.send(f"User <@{user.id}> isn't even banned !")
+            return
+
+        with open("jsonfiles/messager_ban.json", "w") as f:
+            json.dump(banlist, f)
+        await ctx.send(f"User <@{user}> successfully unbanned from the Messager.")
+    else:
+        await ctx.message.delete()
 
 
 
@@ -111,7 +228,7 @@ async def sleep(ctx: Context):
         exit()
     else:
         await ctx.send("Nuh uh, only Arinone can tell me to go to sleep.")
-    log.info(f"sleep triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"technical sleep triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
 @technical.command(aliases=["reboot", "r"])
 async def restart(ctx: Context):
@@ -122,7 +239,7 @@ async def restart(ctx: Context):
         os.execv(sys.executable, ['python'] + sys.argv)
     else:
         await ctx.send("Nuh uh, only Arinone can tell me to restart.")
-    log.info(f"restart triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"technical restart triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
 
 
