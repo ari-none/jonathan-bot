@@ -120,7 +120,7 @@ async def write(ctx: Context, *messageWrite: str):
     """Writes a message to the messager."""
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
-    if banlist[ctx.message.author.id] is not None:
+    if ctx.message.author.id in banlist:
         await ctx.send("You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
         return
 
@@ -144,8 +144,7 @@ async def read(ctx: Context):
     """Reads the messager's message."""
     with open("jsonfiles/memory.json") as f:
         mem = json.load(f)
-    g = ctx.guild.name if ctx.guild is not None else "somewhere"
-    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=mem[f"This message was written by <@{mem["messager_user"]}> from {g}"])
+    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=f"This message was written by <@{mem["messager_user"]}>")
     await ctx.send(embed=emb)
 
 @messager.command()
@@ -153,7 +152,7 @@ async def report(ctx: Context):
     """Sends a report of the latest message to Arinone."""
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
-    if banlist[ctx.message.author.id] is not None:
+    if ctx.message.author.id in banlist is not None:
         await ctx.send("You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
         return
 
@@ -161,16 +160,17 @@ async def report(ctx: Context):
         mem = json.load(f)
     if mem["messager_user"] == 0 or mem["messager_user"] is None:
         await ctx.send("There's no messages to report !")
+        return
 
     ari = await bot.fetch_user(703959508489207838)
-    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=mem[f"This message was written by <@{mem["messager_user"]}> from {g}"])
+    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=f"This message was written by <@{mem["messager_user"]}>")
     await ari.send(f"New report from <@{ctx.message.author.id}> !!", embed=emb)
 
     mem["messager_message"] = "No messages for now…"
     mem["messager_user"] = 0
 
     with open("jsonfiles/memory.json", "w") as f:
-        json.dump(f, mem, indent=2)
+        json.dump(mem, f, indent=2)
 
     await ctx.send("Report submitted for the latest message ! The suspicious message has been cancelled just in case.\n**Any false reports and/or mass reports will result in a ban from the messager service.**")
 
@@ -181,14 +181,14 @@ async def ban(ctx: Context, user: User):
         with open("jsonfiles/messager_ban.json") as f:
             banlist: list[int] = json.load(f)
 
-        if not banlist[user.id]:
+        if not user.id in banlist:
             banlist.append(user.id)
         else:
             await ctx.send(f"User <@{user.id}> is already banned !")
             return
 
         with open("jsonfiles/messager_ban.json", "w") as f:
-            json.dump(banlist, f)
+            json.dump(banlist, f, indent=2)
         await ctx.send(f"User <@{user}> successfully banned from the Messager.")
     else:
         await ctx.message.delete()
@@ -200,14 +200,14 @@ async def unban(ctx: Context, user: User):
         with open("jsonfiles/messager_ban.json") as f:
             banlist: list[int] = json.load(f)
 
-        if banlist[user.id]:
+        if user.id in banlist:
             banlist.remove(user.id)
         else:
             await ctx.send(f"User <@{user.id}> isn't even banned !")
             return
 
         with open("jsonfiles/messager_ban.json", "w") as f:
-            json.dump(banlist, f)
+            json.dump(banlist, f, indent=2)
         await ctx.send(f"User <@{user}> successfully unbanned from the Messager.")
     else:
         await ctx.message.delete()
