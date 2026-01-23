@@ -76,41 +76,54 @@ async def roll(ctx: Context, dices: int = 1, faces: int = 20):
     await ctx.send(result)
     log.info(f"roll triggered by [{ctx.message.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
 
-@bot.command()
+@bot.hybrid_command()
 async def dance(ctx: Context):
-    """Make me dance !"""
+    """Make me dance !
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     await ctx.send(file=File("./media/jonathan_dance.gif"))
     log.info(f"dance triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@bot.command(aliases=["tip"])
+@bot.hybrid_command(aliases=["tip"])
 async def tips(ctx: Context):
-    """Gives random Aced Beyond tips alongside some real world tips."""
+    """Gives random Aced Beyond tips alongside some real world tips.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     result = cmdf.tips()
     await ctx.send(result)
     log.info(f"tips triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@bot.command()
+@bot.hybrid_command()
 async def token(ctx: Context):
-    """Grabs this bot's token."""
+    """Grabs this bot's token.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     await ctx.message.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File("./media/eeveegun.jpg"))
     log.info(f"token triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@bot.command()
-async def mentionid(ctx: Context, id: int):
-    """Mentions a user from the given user ID."""
-    await ctx.message.reply(f"<@{id}>")
-    log.info(f"mentionid triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
-
-# @bot.command()
-# async def embedtest(ctx: Context):
-#     """Testing embeds"""
-#     emb = Embed(color=Color.from_rgb(255, 255, 0), title="Embed test", description="A test embed, with a cute eevee pic there")
-#     emb.set_image(url="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic0.gamerantimages.com%2Fwordpress%2Fwp-content%2Fuploads%2F2025%2F02%2Fpokemon-eevee-standard-shiny.jpg&f=1&nofb=1&ipt=37238d99e1282e95d67e98b6e965908e2de51bf865fa704ec900b111ab48f553")
-#     await ctx.send(embed=emb)
-
-@bot.command(aliases=["cool"])
+@bot.hybrid_command(aliases=["cool"])
 async def coolness(ctx: Context, user:User):
-    """Tests how cool a user is."""
+    """Tests how cool a user is.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    user: discord.User
+        The user to rate
+    """
     emb, success = cmdf.coolness(user)
     if success:
         await ctx.send(embed=emb)
@@ -121,9 +134,15 @@ async def coolness(ctx: Context, user:User):
 
 
 #### Messager ####
-@bot.group(aliases=["msg", "m"])
+@bot.hybrid_group(aliases=["msg", "m"])
 async def messager(ctx: Context):
-    """Messager commands category."""
+    """Messager commands category.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     if ctx.invoked_subcommand is None:
         await ctx.send("""Messager commands for writing messages.
         Type `j:messager read` to get the last message.
@@ -134,7 +153,15 @@ async def messager(ctx: Context):
 
 @messager.command(aliases=["w", "override", "over"])
 async def write(ctx: Context, *messageWrite: str):
-    """Writes a message to the messager."""
+    """Writes a message to the messager.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    *messageWrite: str
+        The messages to write (if you put multiple messages, they will be concatenated together)
+    """
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
     if ctx.message.author.id in banlist:
@@ -158,7 +185,13 @@ async def write(ctx: Context, *messageWrite: str):
 
 @messager.command(aliases=["r", "show", "see", "s"])
 async def read(ctx: Context):
-    """Reads the messager's message."""
+    """Reads the messager's message.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     with open("jsonfiles/memory.json") as f:
         mem = json.load(f)
     emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=f"This message was written by <@{mem["messager_user"]}>")
@@ -166,7 +199,13 @@ async def read(ctx: Context):
 
 @messager.command()
 async def report(ctx: Context):
-    """Sends a report of the latest message to Arinone."""
+    """Sends a report of the latest message to Arinone.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
     if ctx.message.author.id in banlist is not None:
@@ -193,7 +232,15 @@ async def report(ctx: Context):
 
 @messager.command()
 async def ban(ctx: Context, user: User):
-    """Arinone-only command for banning users from the Messager."""
+    """Arinone-only command for banning users from the Messager.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    user: discord.User
+        The user to ban
+    """
     if ctx.message.author.id == 703959508489207838:
         with open("jsonfiles/messager_ban.json") as f:
             banlist: list[int] = json.load(f)
@@ -212,7 +259,15 @@ async def ban(ctx: Context, user: User):
 
 @messager.command(aliases=["uban"])
 async def unban(ctx: Context, user: User):
-    """Arinone-only command for unbanning users from the Messager."""
+    """Arinone-only command for unbanning users from the Messager.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    user: discord.User
+        The user to unban
+    """
     if ctx.message.author.id == 703959508489207838:
         with open("jsonfiles/messager_ban.json") as f:
             banlist: list[int] = json.load(f)
@@ -232,16 +287,28 @@ async def unban(ctx: Context, user: User):
 
 
 #### Technical ####
-@bot.group(aliases=["tech", "t"])
+@bot.hybrid_group(aliases=["tech", "t"])
 async def technical(ctx: Context):
-    """Technical commands category."""
+    """Technical commands category.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     if ctx.invoked_subcommand is None:
         await ctx.send("Technical commands for use by Arinone. Type `j:help technical` for further help.")
     log.info(f"technical triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
 @technical.command(aliases=["goodnight", "night", "s"])
 async def sleep(ctx: Context):
-    """Puts me to sleep if sent by Arinone."""
+    """Puts me to sleep if sent by Arinone.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     if ctx.message.author.id == 703959508489207838:
         await bot.change_presence(status=Status.offline)
         await ctx.send("Oh ok, good night unc Ari.")
@@ -252,7 +319,13 @@ async def sleep(ctx: Context):
 
 @technical.command(aliases=["reboot", "r"])
 async def restart(ctx: Context):
-    """Makes me restart if sent by Arinone."""
+    """Makes me restart if sent by Arinone.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     if ctx.message.author.id == 703959508489207838:
         await bot.change_presence(status=Status.idle)
         await ctx.send("Oh ok, see you again unc Ari.")
@@ -260,6 +333,22 @@ async def restart(ctx: Context):
     else:
         await ctx.send("Nuh uh, only Arinone can tell me to restart.")
     log.info(f"technical restart triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+
+@technical.command(aliases=["csync", "treesync"])
+async def commandsync(ctx: Context):
+    """Synchronises slash commands if sent by Arinone.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
+    if ctx.message.author.id == 703959508489207838:
+        await ctx.send("Syncing slash commands. Expect results to come within some time.")
+        await bot.tree.sync()
+    else:
+        await ctx.send("Nuh uh, only Arinone can tell me to sync commands.")
+    log.info(f"technical commandsync triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
 @bot.command(aliases=["say", "s"], hidden=True)
 async def messageas(ctx: Context, *messageWrite: str):
