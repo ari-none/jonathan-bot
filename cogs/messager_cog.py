@@ -31,16 +31,16 @@ class Messager(commands.Cog):
             Type `j:help messager` for further help.""")
         log.info(f"messager triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
-    @messager.command(aliases=["w", "override", "over"])
-    async def write(self, ctx: Context[commands.Bot], *, messageWrite: str):
-        """Writes a message to the messager.
+    @messager.command(aliases=["w", "compose", "comp", "c", "override", "over"])
+    async def write(self, ctx: Context[commands.Bot], *, message: str):
+        """Composes/writes a message to the messager.
 
         Parameters
         ----------
         ctx: commands.Context
             The context of the command invocation
-        *messageWrite: str
-            The messages to write (if you put multiple messages, they will be concatenated together)
+        message: str
+            The messages to write
         """
         with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json") as bans:
             banlist = json.load(bans)
@@ -49,20 +49,25 @@ class Messager(commands.Cog):
                 "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
             return
 
-        if not messageWrite:
+        if not message:
             await ctx.send("Must provide a message !")
             return
-#        msg = ""
-#        for s in messageWrite:
-#            msg += s + " "
+        msg = ""
+        for s in message:
+            msg += s
+
+        if len(msg) > 255:
+            await ctx.send("Your message is too long ! Must be 255 or less characters.")
+            return
+
         with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json", "r") as mem:
             j = json.load(mem)
-        j['messager_message'] = messageWrite
+        j['messager_message'] = msg
         j['messager_user'] = ctx.author.id
         with open("jsonfiles/memory.json", "w") as mem:
             json.dump(j, mem, indent=2)
         await ctx.send("Message written ! Use `j:messager read` to read it.")
-        log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{messageWrite}]")
+        log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
 
     @messager.command(aliases=["r", "show", "see", "s"])
     async def read(self, ctx: Context[commands.Bot]):
@@ -77,9 +82,9 @@ class Messager(commands.Cog):
             mem = json.load(f)
         emb = Embed(color=Color.dark_blue(), title=mem['messager_message'],
                     description=f"This message was written by <@{mem['messager_user']}>")
-        await ctx.send(embed=emb)
+        await ctx.send("", embed=emb)
 
-    @messager.command()
+    @messager.command(aliases=["reportmessage"])
     async def report(self, ctx: Context[commands.Bot]):
         """Sends a report of the latest message to Arinone.
 
