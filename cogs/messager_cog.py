@@ -10,11 +10,11 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
-class BotCog(commands.Cog):
+class MessagerCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
-    @commands.hybrid_group(aliases=["msg", "m"], fallback="info")
+    @commands.hybrid_group(aliases=["msg", "m"]) #TODO fix this shit
     async def messager(self, ctx: Context[commands.Bot]):
         """Messager commands category.
 
@@ -29,7 +29,7 @@ class BotCog(commands.Cog):
             Type `j:messager write <message>` to write a message that's readable by anyone (no weird stuff please).
             Type `j:messager report` to report the latest message (and maybe ban the user if the reports are valid).
             Type `j:help messager` for further help.""")
-        log.info(f"messager triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+        log.info(f"messager triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
     @messager.command(aliases=["w", "override", "over"])
     async def write(self, ctx: Context[commands.Bot], *messageWrite: str):
@@ -42,9 +42,9 @@ class BotCog(commands.Cog):
         *messageWrite: str
             The messages to write (if you put multiple messages, they will be concatenated together)
         """
-        with open(f"{getenv("BOT_ENV")}/jsonfiles/messager_ban.json") as bans:
+        with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json") as bans:
             banlist = json.load(bans)
-        if ctx.message.author.id in banlist:
+        if ctx.author.id in banlist:
             await ctx.send(
                 "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
             return
@@ -55,14 +55,14 @@ class BotCog(commands.Cog):
         msg = ""
         for s in messageWrite:
             msg += s + " "
-        with open(f"{getenv("BOT_ENV")}/jsonfiles/memory.json", "r") as mem:
+        with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json", "r") as mem:
             j = json.load(mem)
-        j["messager_message"] = msg
-        j["messager_user"] = ctx.message.author.id
+        j['messager_message'] = msg
+        j['messager_user'] = ctx.author.id
         with open("jsonfiles/memory.json", "w") as mem:
             json.dump(j, mem, indent=2)
         await ctx.send("Message written ! Use `j:messager read` to read it.")
-        log.info(f"messager write triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
+        log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
 
     @messager.command(aliases=["r", "show", "see", "s"])
     async def read(self, ctx: Context[commands.Bot]):
@@ -73,10 +73,10 @@ class BotCog(commands.Cog):
         ctx: commands.Context
             The context of the command invocation
         """
-        with open(f"{getenv("BOT_ENV")}/jsonfiles/memory.json") as f:
+        with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json") as f:
             mem = json.load(f)
-        emb = Embed(color=Color.dark_blue(), title=mem["messager_message"],
-                    description=f"This message was written by <@{mem["messager_user"]}>")
+        emb = Embed(color=Color.dark_blue(), title=mem['messager_message'],
+                    description=f"This message was written by <@{mem['messager_user']}>")
         await ctx.send(embed=emb)
 
     @messager.command()
@@ -88,28 +88,28 @@ class BotCog(commands.Cog):
         ctx: commands.Context
             The context of the command invocation
         """
-        with open(f"{getenv("BOT_ENV")}/jsonfiles/messager_ban.json") as bans:
+        with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json") as bans:
             banlist = json.load(bans)
-        if ctx.message.author.id in banlist is not None:
+        if ctx.author.id in banlist:
             await ctx.send(
                 "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
             return
 
-        with open(f"{getenv("BOT_ENV")}/jsonfiles/memory.json") as f:
+        with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json") as f:
             mem = json.load(f)
-        if mem["messager_user"] == 0 or mem["messager_user"] is None:
+        if mem['messager_user'] == 0 or mem['messager_user'] is None:
             await ctx.send("There's no messages to report !")
             return
 
-        ari = await bot.fetch_user(703959508489207838)
-        emb = Embed(color=Color.dark_blue(), title=mem["messager_message"],
-                    description=f"This message was written by <@{mem["messager_user"]}>")
-        await ari.send(f"New report from <@{ctx.message.author.id}> !!", embed=emb)
+        ari = await self.bot.fetch_user(703959508489207838)
+        emb = Embed(color=Color.dark_blue(), title=mem['messager_message'],
+                    description=f"This message was written by <@{mem['messager_user']}>")
+        await ari.send(f"New report from <@{ctx.author.id}> !!", embed=emb)
 
-        mem["messager_message"] = "No messages for now…"
-        mem["messager_user"] = 0
+        mem['messager_message'] = "No messages for now…"
+        mem['messager_user'] = 0
 
-        with open(f"{getenv("BOT_ENV")}/jsonfiles/memory.json", "w") as f:
+        with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json", "w") as f:
             json.dump(mem, f, indent=2)
 
         await ctx.send(
@@ -126,8 +126,8 @@ class BotCog(commands.Cog):
         user: discord.User
             The user to ban
         """
-        if ctx.message.author.id == 703959508489207838:
-            with open(f"{getenv("BOT_ENV")}/jsonfiles/messager_ban.json") as f:
+        if ctx.author.id == 703959508489207838:
+            with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json") as f:
                 banlist: list[int] = json.load(f)
 
             if not user.id in banlist:
@@ -136,11 +136,11 @@ class BotCog(commands.Cog):
                 await ctx.send(f"User <@{user.id}> is already banned !")
                 return
 
-            with open(f"{getenv("BOT_ENV")}/jsonfiles/messager_ban.json", "w") as f:
+            with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json", "w") as f:
                 json.dump(banlist, f, indent=2)
             await ctx.send(f"User <@{user.id}> successfully banned from the Messager.")
         else:
-            await ctx.message.delete()
+            await ctx.interaction.delete_original_response()
 
     @messager.command(aliases=["uban"])
     async def unban(self, ctx: Context[commands.Bot], user: User):
@@ -153,8 +153,8 @@ class BotCog(commands.Cog):
         user: discord.User
             The user to unban
         """
-        if ctx.message.author.id == 703959508489207838:
-            with open(f"{getenv("BOT_ENV")}/jsonfiles/messager_ban.json") as f:
+        if ctx.author.id == 703959508489207838:
+            with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json") as f:
                 banlist: list[int] = json.load(f)
 
             if user.id in banlist:
@@ -163,12 +163,12 @@ class BotCog(commands.Cog):
                 await ctx.send(f"User <@{user.id}> isn't even banned !")
                 return
 
-            with open(f"{getenv("BOT_ENV")}/jsonfiles/messager_ban.json", "w") as f:
+            with open(f"{getenv('BOT_ENV')}/jsonfiles/messager_ban.json", "w") as f:
                 json.dump(banlist, f, indent=2)
             await ctx.send(f"User <@{user.id}> successfully unbanned from the Messager.")
         else:
-            await ctx.message.delete()
+            await ctx.interaction.delete_original_response()
 
 async def setup(bot):
-    await bot.add_cog(BotCog(bot))
+    await bot.add_cog(MessagerCog(bot))
     log.info(f"Cog added : messager_cog")

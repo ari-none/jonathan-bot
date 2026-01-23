@@ -69,9 +69,9 @@ def localcoolness(user: User) -> tuple[Embed, bool]:
             emb.description = coolness_rd(user)
             return emb, True
 
-class BotCog(commands.Cog):
+class CoolCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
     @commands.hybrid_command(aliases=["cool"])
     async def coolness(self, ctx: Context[commands.Bot], user: User):
@@ -89,8 +89,8 @@ class BotCog(commands.Cog):
             await ctx.send(embed=emb)
         else:
             await ctx.send("You must mention an user in order to rate them !")
-        log.info(f"coolness triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+        log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
 async def setup(bot):
-    await bot.add_cog(BotCog(bot))
+    await bot.add_cog(CoolCog(bot))
     log.info(f"Cog added : coolness_cog")

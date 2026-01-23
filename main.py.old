@@ -68,7 +68,7 @@ async def roll(ctx: Context, dices: int = 1, faces: int = 20):
     """
     result = cmdf.diceroll(dices, faces)
     await ctx.send(result)
-    log.info(f"roll triggered by [{ctx.message.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
+    log.info(f"roll triggered by [{ctx.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
 
 @bot.hybrid_command()
 async def dance(ctx: Context):
@@ -80,7 +80,7 @@ async def dance(ctx: Context):
         The context of the command invocation
     """
     await ctx.send(file=File("./media/jonathan_dance.gif"))
-    log.info(f"dance triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"dance triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @bot.hybrid_command(aliases=["tip"])
 async def tips(ctx: Context):
@@ -93,7 +93,7 @@ async def tips(ctx: Context):
     """
     result = cmdf.tips()
     await ctx.send(result)
-    log.info(f"tips triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"tips triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @bot.hybrid_command()
 async def token(ctx: Context):
@@ -104,8 +104,8 @@ async def token(ctx: Context):
     ctx: commands.Context
         The context of the command invocation
     """
-    await ctx.message.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File("./media/eeveegun.jpg"))
-    log.info(f"token triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    await ctx.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File("./media/eeveegun.jpg"))
+    log.info(f"token triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @bot.hybrid_command(aliases=["cool"])
 async def coolness(ctx: Context, user:User):
@@ -123,7 +123,7 @@ async def coolness(ctx: Context, user:User):
         await ctx.send(embed=emb)
     else:
         await ctx.send("You must mention an user in order to rate them !")
-    log.info(f"coolness triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+    log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
 
 
@@ -143,7 +143,7 @@ async def messager(ctx: Context):
         Type `j:messager write <message>` to write a message that's readable by anyone (no weird stuff please).
         Type `j:messager report` to report the latest message (and maybe ban the user if the reports are valid).
         Type `j:help messager` for further help.""")
-    log.info(f"messager triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"messager triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @messager.command(aliases=["w", "override", "over"])
 async def write(ctx: Context, *messageWrite: str):
@@ -158,7 +158,7 @@ async def write(ctx: Context, *messageWrite: str):
     """
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
-    if ctx.message.author.id in banlist:
+    if ctx.author.id in banlist:
         await ctx.send("You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
         return
 
@@ -170,12 +170,12 @@ async def write(ctx: Context, *messageWrite: str):
         msg += s+" "
     with open("jsonfiles/memory.json", "r") as mem:
         j = json.load(mem)
-    j["messager_message"] = msg
-    j["messager_user"] = ctx.message.author.id
+    j['messager_message'] = msg
+    j['messager_user'] = ctx.author.id
     with open("jsonfiles/memory.json", "w") as mem:
         json.dump(j, mem, indent=2)
     await ctx.send("Message written ! Use `j:messager read` to read it.")
-    log.info(f"messager write triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
+    log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
 
 @messager.command(aliases=["r", "show", "see", "s"])
 async def read(ctx: Context):
@@ -188,7 +188,7 @@ async def read(ctx: Context):
     """
     with open("jsonfiles/memory.json") as f:
         mem = json.load(f)
-    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=f"This message was written by <@{mem["messager_user"]}>")
+    emb = Embed(color=Color.dark_blue(), title=mem['messager_message'], description=f"This message was written by <@{mem['messager_user']}>")
     await ctx.send(embed=emb)
 
 @messager.command()
@@ -202,22 +202,22 @@ async def report(ctx: Context):
     """
     with open("jsonfiles/messager_ban.json") as bans:
         banlist = json.load(bans)
-    if ctx.message.author.id in banlist is not None:
+    if ctx.author.id in banlist is not None:
         await ctx.send("You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
         return
 
     with open("jsonfiles/memory.json") as f:
         mem = json.load(f)
-    if mem["messager_user"] == 0 or mem["messager_user"] is None:
+    if mem['messager_user'] == 0 or mem['messager_user'] is None:
         await ctx.send("There's no messages to report !")
         return
 
     ari = await bot.fetch_user(703959508489207838)
-    emb = Embed(color=Color.dark_blue(), title=mem["messager_message"], description=f"This message was written by <@{mem["messager_user"]}>")
-    await ari.send(f"New report from <@{ctx.message.author.id}> !!", embed=emb)
+    emb = Embed(color=Color.dark_blue(), title=mem['messager_message'], description=f"This message was written by <@{mem['messager_user']}>")
+    await ari.send(f"New report from <@{ctx.author.id}> !!", embed=emb)
 
-    mem["messager_message"] = "No messages for now…"
-    mem["messager_user"] = 0
+    mem['messager_message'] = "No messages for now…"
+    mem['messager_user'] = 0
 
     with open("jsonfiles/memory.json", "w") as f:
         json.dump(mem, f, indent=2)
@@ -235,7 +235,7 @@ async def ban(ctx: Context, user: User):
     user: discord.User
         The user to ban
     """
-    if ctx.message.author.id == 703959508489207838:
+    if ctx.author.id == 703959508489207838:
         with open("jsonfiles/messager_ban.json") as f:
             banlist: list[int] = json.load(f)
 
@@ -249,7 +249,7 @@ async def ban(ctx: Context, user: User):
             json.dump(banlist, f, indent=2)
         await ctx.send(f"User <@{user.id}> successfully banned from the Messager.")
     else:
-        await ctx.message.delete()
+        await ctx.interaction.delete_original_response()
 
 @messager.command(aliases=["uban"])
 async def unban(ctx: Context, user: User):
@@ -262,7 +262,7 @@ async def unban(ctx: Context, user: User):
     user: discord.User
         The user to unban
     """
-    if ctx.message.author.id == 703959508489207838:
+    if ctx.author.id == 703959508489207838:
         with open("jsonfiles/messager_ban.json") as f:
             banlist: list[int] = json.load(f)
 
@@ -276,7 +276,7 @@ async def unban(ctx: Context, user: User):
             json.dump(banlist, f, indent=2)
         await ctx.send(f"User <@{user.id}> successfully unbanned from the Messager.")
     else:
-        await ctx.message.delete()
+        await ctx.interaction.delete_original_response()
 
 
 
@@ -292,7 +292,7 @@ async def technical(ctx: Context):
     """
     if ctx.invoked_subcommand is None:
         await ctx.send("Technical commands for use by Arinone. Type `j:help technical` for further help.")
-    log.info(f"technical triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"technical triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @technical.command(aliases=["goodnight", "night", "s"])
 async def sleep(ctx: Context):
@@ -303,13 +303,13 @@ async def sleep(ctx: Context):
     ctx: commands.Context
         The context of the command invocation
     """
-    if ctx.message.author.id == 703959508489207838:
+    if ctx.author.id == 703959508489207838:
         await bot.change_presence(status=Status.offline)
         await ctx.send("Oh ok, good night unc Ari.")
         exit()
     else:
         await ctx.send("Nuh uh, only Arinone can tell me to go to sleep.")
-    log.info(f"technical sleep triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"technical sleep triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @technical.command(aliases=["reboot", "r"])
 async def restart(ctx: Context):
@@ -320,13 +320,13 @@ async def restart(ctx: Context):
     ctx: commands.Context
         The context of the command invocation
     """
-    if ctx.message.author.id == 703959508489207838:
+    if ctx.author.id == 703959508489207838:
         await bot.change_presence(status=Status.idle)
         await ctx.send("Oh ok, see you again unc Ari.")
         os.execv(sys.executable, ['python'] + sys.argv)
     else:
         await ctx.send("Nuh uh, only Arinone can tell me to restart.")
-    log.info(f"technical restart triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"technical restart triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @technical.command(aliases=["csync", "treesync"])
 async def commandsync(ctx: Context):
@@ -337,21 +337,21 @@ async def commandsync(ctx: Context):
     ctx: commands.Context
         The context of the command invocation
     """
-    if ctx.message.author.id == 703959508489207838:
+    if ctx.author.id == 703959508489207838:
         await ctx.send("Syncing slash commands. Expect results to come within some time.")
         await bot.tree.sync()
     else:
         await ctx.send("Nuh uh, only Arinone can tell me to sync commands.")
-    log.info(f"technical commandsync triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+    log.info(f"technical commandsync triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 @bot.command(aliases=["say", "s"], hidden=True)
 async def messageas(ctx: Context, *messageWrite: str):
-    if ctx.message.author.id == 703959508489207838:
+    if ctx.author.id == 703959508489207838:
         msg = ""
         for s in messageWrite:
             msg += s + " "
         await ctx.send(msg)
-    await ctx.message.delete()
+    await ctx.interaction.delete_original_response()
 
 
 

@@ -21,9 +21,9 @@ def diceroll(dices: int, faces: int) -> str:
         resultString += f"**Die {dice+1}** : `{roll}`\n"
     return  resultString
 
-class BotCog(commands.Cog):
+class DiceCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
     @commands.hybrid_command(aliases=["dice", "diceroll", "rolldice"])
     async def roll(self, ctx: Context[commands.Bot], dices: int = 1, faces: int = 20):
@@ -40,8 +40,8 @@ class BotCog(commands.Cog):
         """
         result = diceroll(dices, faces)
         await ctx.send(result)
-        log.info(f"roll triggered by [{ctx.message.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
+        log.info(f"roll triggered by [{ctx.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
 
 async def setup(bot):
-    await bot.add_cog(BotCog(bot))
+    await bot.add_cog(DiceCog(bot))
     log.info(f"Cog added : diceroll_cog")

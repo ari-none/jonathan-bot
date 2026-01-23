@@ -10,11 +10,11 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
-class BotCog(commands.Cog):
+class TechnicalCog(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
-    @commands.hybrid_group(aliases=["tech", "t"], fallback="info")
+    @commands.hybrid_group(aliases=["tech", "t"]) #TODO fix this shit
     async def technical(self, ctx: Context[commands.Bot]):
         """Technical commands category.
 
@@ -25,7 +25,7 @@ class BotCog(commands.Cog):
         """
         if ctx.invoked_subcommand is None:
             await ctx.send("Technical commands for use by Arinone. Type `j:help technical` for further help.")
-        log.info(f"technical triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+        log.info(f"technical triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
     @technical.command(aliases=["csync", "treesync"])
     async def commandsync(self, ctx: Context[commands.Bot]):
@@ -36,14 +36,14 @@ class BotCog(commands.Cog):
         ctx: commands.Context
             The context of the command invocation
         """
-        if ctx.message.author.id == 703959508489207838:
+        if ctx.author.id == 703959508489207838:
             await ctx.send("Syncing slash commands. Expect results to come within some time.")
             await self.bot.tree.sync()
         else:
             await ctx.send("Nuh uh, only Arinone can tell me to sync commands.")
-        log.info(f"technical commandsync triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+        log.info(f"technical commandsync triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
-    @commands.hybrid_command()
+    @technical.command()
     async def token(self, ctx: Context[commands.Bot]):
         """Grabs this bot's token.
 
@@ -52,19 +52,19 @@ class BotCog(commands.Cog):
         ctx: commands.Context
             The context of the command invocation
         """
-        await ctx.message.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File(f"{getenv("BOT_ENV")}/media/eeveegun.jpg"))
-        log.info(f"token triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+        await ctx.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File(f"{getenv('BOT_ENV')}/media/eeveegun.jpg"))
+        log.info(f"token triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
     @commands.command(aliases=["say", "s"], hidden=True)
     async def messageas(self, ctx: Context, *messageWrite: str):
         msg = ""
-        if ctx.message.author.id == 703959508489207838:
+        if ctx.author.id == 703959508489207838:
             for s in messageWrite:
                 msg += s + " "
             await ctx.send(msg)
-        await ctx.message.delete()
-        log.info(f"messageas triggered by [{ctx.message.author.id}] at [{datetime.now()}] with args [{msg}]")
+        await ctx.interaction.delete_original_response()
+        log.info(f"messageas triggered by [{ctx.author.id}] at [{datetime.now()}] with args [{msg}]")
 
 async def setup(bot):
-    await bot.add_cog(BotCog(bot))
+    await bot.add_cog(TechnicalCog(bot))
     log.info(f"Cog added : technical_cog")

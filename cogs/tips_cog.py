@@ -11,7 +11,7 @@ import random as r
 
 log = logging.getLogger("jonathan_bot")
 
-with open(f"{getenv("BOT_ENV")}/jsonfiles/tips.json", "r") as f:
+with open(f"{getenv('BOT_ENV')}/jsonfiles/tips.json", "r") as f:
     tipsList = json.load(f)
 def localtips() -> str:
     rtip1 = tipsList["game"][r.randint(0, len(tipsList["game"]) - 1)]
@@ -24,9 +24,9 @@ def localtips() -> str:
 
     return result
 
-class BotCog(commands.Cog):
+class TipsCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
     @commands.hybrid_command(aliases=["tip"])
     async def tips(self, ctx: Context[commands.Bot]):
@@ -39,8 +39,8 @@ class BotCog(commands.Cog):
         """
         result = localtips()
         await ctx.send(result)
-        log.info(f"tips triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+        log.info(f"tips triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 async def setup(bot):
-    await bot.add_cog(BotCog(bot))
+    await bot.add_cog(TipsCog(bot))
     log.info(f"Cog added : tips_cog")

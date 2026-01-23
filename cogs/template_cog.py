@@ -10,9 +10,9 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
-class BotCog(commands.Cog):
+class SuperCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
-        self.bot = bot
+        self.bot: commands.Bot = bot
 
     @commands.hybrid_command(aliases=["t"])
     async def template(self, ctx: Context[commands.Bot]):
@@ -23,9 +23,9 @@ class BotCog(commands.Cog):
         ctx: commands.Context
             The context of the command invocation
         """
-        await ctx.message.reply("Template message invoked via template cog.")
-        log.info(f"template triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
+        await ctx.reply("Template message invoked via template cog.")
+        log.info(f"template triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 async def setup(bot):
-    await bot.add_cog(BotCog(bot))
+    await bot.add_cog(SuperCog(bot))
     log.info(f"Cog added : template_cog")
