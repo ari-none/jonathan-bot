@@ -28,6 +28,7 @@ bot_intents.members = True
 bot_intents.message_content = True
 bot_intents.guilds = True
 bot_intents.guild_typing = True
+bot_intents.integrations = True
 bot_desc = """Jonathan Bolbynsky bot for random stuff
 Made by Arinone"""
 
@@ -46,15 +47,31 @@ async def on_ready():
 
 
 #### Uncategorized ####
-@bot.command()
+@bot.hybrid_command()
 async def ping(ctx: Context):
-    """Checks if the bot responds."""
+    """Checks if the bot responds.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    """
     await ctx.message.reply(f"Pong ! Responsive as (nearly) always, {ctx.message.author}", mention_author=True)
     log.info(f"ping triggered by [{ctx.message.author.id}] at [{datetime.now()}]")
 
-@bot.command(aliases=["dice", "diceroll", "rolldice"])
+@bot.hybrid_command(aliases=["dice", "diceroll", "rolldice"])
 async def roll(ctx: Context, dices: int = 1, faces: int = 20):
-    """Rolls dices."""
+    """Rolls dices.
+
+    Parameters
+    ----------
+    ctx: commands.Context
+        The context of the command invocation
+    dices: int = 1
+        The number of dice to roll (defaults to 1)
+    faces: int = 20
+        The number of faces a die would have (defaults to 20 faces ; aka an icosahedron)
+    """
     result = cmdf.diceroll(dices, faces)
     await ctx.send(result)
     log.info(f"roll triggered by [{ctx.message.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
