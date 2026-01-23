@@ -46,18 +46,18 @@ class Messager(commands.Cog):
             banlist = json.load(bans)
         if ctx.author.id in banlist:
             await ctx.send(
-                "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
+                "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.", delete_after=15)
             return
 
         if not message:
-            await ctx.send("Must provide a message !")
+            await ctx.send("Must provide a message !", delete_after=15)
             return
         msg = ""
         for s in message:
             msg += s
 
-        if len(msg) > 255:
-            await ctx.send("Your message is too long ! Must be 255 or less characters.")
+        if len(msg) > 4095:
+            await ctx.send("Your message is too long ! Must be no more than 4095 characters.", delete_after=15)
             return
 
         with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json", "r") as mem:
@@ -66,7 +66,10 @@ class Messager(commands.Cog):
         j['messager_user'] = ctx.author.id
         with open("jsonfiles/memory.json", "w") as mem:
             json.dump(j, mem, indent=2)
-        await ctx.send("Message written ! Use `j:messager read` to read it.")
+        emb = Embed(color=Color.dark_blue(), title=":mailbox_closed: Letter sent to Messager :incoming_envelope:",
+                    description=msg)
+        emb.set_footer(text=":warning: If this message contains anything offensive or bad, you can always do `j:messager report` !")
+        await ctx.send("Letter sent ! Use `j:messager read` to read it.", embed=emb)
         log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
 
     @messager.command(aliases=["r", "show", "see", "s"])
@@ -80,11 +83,16 @@ class Messager(commands.Cog):
         """
         with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json") as f:
             mem = json.load(f)
-        emb = Embed(color=Color.dark_blue(), title=mem['messager_message'],
-                    description=f"This message was written by <@{mem['messager_user']}>")
-        await ctx.send("", embed=emb)
 
-    @messager.command(aliases=["reportmessage"])
+        if mem['messager_user'] <= 0:
+            await ctx.send("No letters unfortunately… Try again next time, or compose one with `j:messager write` !")
+
+        emb = Embed(color=Color.dark_blue(), title=":incoming_envelope: Letter from the Messager :mailbox_with_mail:",
+                    description=mem['messager_message'])
+        emb.set_footer(text=f"This message was written by <@{mem['messager_user']}>")
+        await ctx.send(embed=emb)
+
+    @messager.command(aliases=["reportmessage", "rep"])
     async def report(self, ctx: Context[commands.Bot]):
         """Sends a report of the latest message to Arinone.
 
@@ -97,18 +105,19 @@ class Messager(commands.Cog):
             banlist = json.load(bans)
         if ctx.author.id in banlist:
             await ctx.send(
-                "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.")
+                "You are banned from writing to the messager.\nPlease DM <@703959508489207838> for further inquiries.", delete_after=15)
             return
 
         with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json") as f:
             mem = json.load(f)
         if mem['messager_user'] == 0 or mem['messager_user'] is None:
-            await ctx.send("There's no messages to report !")
+            await ctx.send("There's no messages to report !", delete_after=15)
             return
 
         ari = await self.bot.fetch_user(703959508489207838)
-        emb = Embed(color=Color.dark_blue(), title=mem['messager_message'],
-                    description=f"This message was written by <@{mem['messager_user']}>")
+        emb = Embed(color=Color.dark_blue(), title="Suspicious message from the Messager",
+                    description=mem['messager_message'])
+        emb.set_footer(text=f"This message was written by <@{mem['messager_user']}>")
         await ari.send(f"New report from <@{ctx.author.id}> !!", embed=emb)
 
         mem['messager_message'] = "No messages for now…"

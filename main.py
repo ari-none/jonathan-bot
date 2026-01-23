@@ -8,6 +8,8 @@ import json
 from datetime import datetime
 from discord import File, Embed, Color, User, Status
 from discord.ext import commands
+from discord.ext.commands import errors
+from discord.ext.commands._types import BotT
 from discord.ext.commands.context import Context
 from dotenv import load_dotenv
 from os import getenv
@@ -39,4 +41,15 @@ class BotUser(commands.Bot):
                 await self.load_extension(cog)
 
 bot = BotUser(command_prefix=bot_cmdPrefix, intents=bot_intents, description=bot_desc)
+
+@bot.event
+async def on_command_error(ctx: commands.Context, error: commands.CommandError):
+    emb = Embed(color=Color.from_rgb(15, 0, 0),
+                title="Error occured !", description=f"""An error occured while typing the command `{ctx.command.name}` !
+                If needed, you can always type `j:help {ctx.command.name}` to know how to properly use it.
+                Or alternatively, you can always use slash commands as they're less likely to give you errors next time !""")
+    emb.set_footer(text=f"Technical details : `{error}`")
+    await ctx.send(embed=emb, delete_after=15)
+    log.error(f"Error from command [{ctx.command.name}] by user [{ctx.author.id}] : \n\t[{error}]")
+
 bot.run(getenv("BOT_TOKEN"))

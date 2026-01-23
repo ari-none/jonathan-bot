@@ -40,7 +40,7 @@ class Technical(commands.Cog):
             await ctx.send("Syncing slash commands. Expect results to come within some time.")
             await self.bot.tree.sync()
         else:
-            await ctx.send("Nuh uh, only Arinone can tell me to sync commands.")
+            await ctx.send("Nuh uh, only Arinone can tell me to sync commands.", delete_after=15)
         log.info(f"technical commandsync triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
     @technical.command()

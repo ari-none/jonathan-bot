@@ -88,7 +88,7 @@ class Rating(commands.Cog):
         if success:
             await ctx.send(embed=emb)
         else:
-            await ctx.send("You must mention an user in order to rate them !")
+            await ctx.send("You must mention an user in order to rate them !", delete_after=15)
         log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
 async def setup(bot):
