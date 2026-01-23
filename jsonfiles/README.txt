@@ -1,0 +1,1 @@
+Note : /data folder is nonexistent on the public repo, because it's private memory stuff.
