@@ -12,6 +12,7 @@ import random as r
 
 log = logging.getLogger("jonathan_bot")
 
+# Odd how Lua has a clamp function but not python for some reason
 def clamp(n, min_value, max_value):
     return max(min_value, min(n, max_value))
 
@@ -43,11 +44,11 @@ class Games(commands.Cog):
             The number of faces a die would have (defaults to 20 faces ; aka an icosahedron)
         """
         dices = clamp(dices, 1, 15)
-        faces = clamp(faces, 1, 999999999)
+        faces = clamp(faces, 1, 999999999) # I lied ! It's actually clamped !!!
         result: Embed = diceroll(dices, faces)
         await ctx.send(embed=result)
         log.info(f"roll triggered by [{ctx.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
 
 async def setup(bot):
     await bot.add_cog(Games(bot))
-    log.info(f"Cog added : diceroll_cog")
+    log.info(f"Cog added : game_cog")

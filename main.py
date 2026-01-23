@@ -2,6 +2,7 @@
 import os
 import sys
 
+# Even if some imports are unused, I'll leave those here just for convenience. There should be no issues memory wise.
 import discord
 import logging
 import json
@@ -9,7 +10,6 @@ from datetime import datetime
 from discord import File, Embed, Color, User, Status
 from discord.ext import commands
 from discord.ext.commands import errors
-from discord.ext.commands._types import BotT
 from discord.ext.commands.context import Context
 from dotenv import load_dotenv
 from os import getenv
@@ -22,7 +22,7 @@ log.info(f"Jonathan bot script started at [{datetime.now()}]\n\n")
 # Loading environment variables
 load_dotenv(".env")
 
-# Bot config
+# Pre-written bot config
 bot_cmdPrefix = "j:"
 bot_intents = discord.Intents.default()
 bot_intents.members = True
@@ -42,6 +42,7 @@ class BotUser(commands.Bot):
 
 bot = BotUser(command_prefix=bot_cmdPrefix, intents=bot_intents, description=bot_desc)
 
+# Global error handler so the console won't get spammed with errors here-and-there.
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.CommandError):
     emb = Embed(color=Color.from_rgb(15, 0, 0),

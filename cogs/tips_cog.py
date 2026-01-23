@@ -45,6 +45,7 @@ class TipsNFacts(commands.Cog):
         await ctx.send(result)
         log.info(f"tips acedbeyond triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
+    # Holy shit Psychopomp reference
     @tips.command(aliases=["real", "life", "rl", "irl"])
     async def reallife(self, ctx: Context[commands.Bot]):
         """Gives a real life tip.

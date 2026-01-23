@@ -10,6 +10,7 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
+# General (unclassified/uncategorized) commands goes in this cog
 class General(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot: commands.Bot = bot

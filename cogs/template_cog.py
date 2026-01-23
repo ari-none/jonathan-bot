@@ -10,6 +10,7 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
+# Template file I made for making new cogs
 class SuperCog(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot: commands.Bot = bot

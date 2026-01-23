@@ -43,6 +43,7 @@ class Technical(commands.Cog):
             await ctx.send("Nuh uh, only Arinone can tell me to sync commands.", delete_after=15)
         log.info(f"technical commandsync triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
+    # This is purely a troll command. Of course I'm not dumb enough to make the bot's token public.
     @technical.command()
     async def token(self, ctx: Context[commands.Bot]):
         """Grabs this bot's token.
@@ -55,6 +56,7 @@ class Technical(commands.Cog):
         await ctx.reply("Fuh nah :broken_heart:\nYou ain't getting no tokens blud :pray::pray:", mention_author=True, file=File(f"{getenv('BOT_ENV')}/media/eeveegun.jpg"))
         log.info(f"token triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
+    # Is reverse self-botting allowed ? I think so, so I made a way to RP as Jonathan on demand.
     @commands.command(aliases=["say", "s"], hidden=True)
     async def messageas(self, ctx: Context, *messageWrite: str):
         msg = ""

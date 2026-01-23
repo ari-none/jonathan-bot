@@ -31,6 +31,8 @@ class Messager(commands.Cog):
             Type `j:help messager` for further help.""")
         log.info(f"messager triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
+    # Fun fact : This specific command almost made me want to hit my head against my keyboard since it was constantly throwing errors.
+    # I still don't remember how I fixed it.
     @messager.command(aliases=["w", "compose", "comp", "c", "override", "over"])
     async def write(self, ctx: Context[commands.Bot], *, message: str):
         """Composes/writes a message to the messager.
@@ -92,6 +94,7 @@ class Messager(commands.Cog):
         emb.set_footer(text=f"This message was written by <@{mem['messager_user']}>")
         await ctx.send(embed=emb)
 
+    # Moderation 101
     @messager.command(aliases=["reportmessage", "rep"])
     async def report(self, ctx: Context[commands.Bot]):
         """Sends a report of the latest message to Arinone.
@@ -151,11 +154,12 @@ class Messager(commands.Cog):
                 return
 
             with open(f"{getenv('BOT_ENV')}/jsonfiles/data/messager_ban.json", "w") as f:
-                json.dump(banlist, f, indent=2)
+                json.dump(banlist, f, indent=2) # To PyCharm : TextIO can be used for SupportsWrite[str] so please don't vomit warning lines in my code than you ^w^
             await ctx.send(f"User <@{user.id}> successfully banned from the Messager.")
         else:
             await ctx.interaction.delete_original_response()
 
+    # "umount" typa alias
     @messager.command(aliases=["uban"])
     async def unban(self, ctx: Context[commands.Bot], user: User):
         """Arinone-only command for unbanning users from the Messager.

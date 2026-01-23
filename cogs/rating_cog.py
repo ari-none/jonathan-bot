@@ -12,10 +12,11 @@ import random as r
 log = logging.getLogger("jonathan_bot")
 
 def coolness_rd(user: User) -> str:
+    # Yes it's rigged.
     preval = r.gauss(mu=75, sigma=40)  # center at 75
     val = max(0, min(100, round(preval)))
 
-    # val = r.randint(0, 100) --Old code
+    # val = r.randint(0, 100) --Old code (true "random")
     if val == 100:
         return "[100%] The coolest user you'll ever see :sunglasses:"
     elif val >= 75:
@@ -33,10 +34,12 @@ def coolness_rd(user: User) -> str:
 
 def localcoolness(user: User) -> tuple[Embed, bool]:
     if not user:
-        return Embed(), False
+        return Embed(), False # Empty embed for failing return
 
     emb = Embed(color=Color.green(), title="Coolness meter")
 
+    # Special user cases (well it's supposed to be a bot for friends ; so I thought that kind of function would be cool
+    # I mean I don't think that's specifically against any TOS or anything)
     match user.id:
         case 1:
             emb.description = "Value"
@@ -45,7 +48,7 @@ def localcoolness(user: User) -> tuple[Embed, bool]:
             emb.description = f"[∞%] It's me. No one's cooler than I am :sunglasses:"
             return emb, True
         case 877550294785986571:
-            emb.description = f"[0%] Nah we ain't talking about this dud."
+            emb.description = f"[0%] No comment."
             return emb, True
         case 703959508489207838:
             emb.description = f"[100%] It's Arinone. Who could hate such a cute jolteon ?~ Aight ok I'll stop acting corny. Or not :upside_down:"
@@ -93,4 +96,4 @@ class Rating(commands.Cog):
 
 async def setup(bot):
     await bot.add_cog(Rating(bot))
-    log.info(f"Cog added : coolness_cog")
+    log.info(f"Cog added : rating_cog")
