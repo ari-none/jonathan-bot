@@ -1,33 +1,15 @@
-import random as r
+# Imports
+from discord.ext import commands
+import logging
 import json
-from discord import User, Embed, Color
+from datetime import datetime
+from discord import File, Embed, Color, User, Status
+from discord.ext import commands
+from discord.ext.commands.context import Context
+from os import getenv
+import random as r
 
-
-
-def diceroll(dices: int, faces: int) -> str:
-    dices = max(dices, 1)
-    faces = max(faces, 1)
-    resultString = f"## Dice roll (d{faces}) :\n\n"
-    for dice in range(dices):
-        roll = r.randint(1, faces)
-        resultString += f"**Die {dice+1}** : `{roll}`\n"
-    return  resultString
-
-
-
-with open("jsonfiles/tips.json", "r") as f:
-    tipsList = json.load(f)
-def tips() -> str:
-    rtip1 = tipsList["game"][r.randint(0, len(tipsList["game"]) - 1)]
-    rtip2 = tipsList["real"][r.randint(0, len(tipsList["real"]) - 1)]
-    result = f"""## ——Gameplay Tips——
-```{rtip1}```
-## ——Real world Tips——
-```{rtip2}```"""
-
-    return result
-
-
+log = logging.getLogger("jonathan_bot")
 
 def coolness_rd(user: User) -> str:
     preval = r.gauss(mu=75, sigma=40)  # center at 75
@@ -49,7 +31,7 @@ def coolness_rd(user: User) -> str:
     else:
         return f"[{val}%] {user.display_name} ! GET YOUR BITCH ASS OUT !"
 
-def coolness(user: User) -> tuple[Embed, bool]:
+def localcoolness(user: User) -> tuple[Embed, bool]:
     if not user:
         return Embed(), False
 
@@ -86,3 +68,29 @@ def coolness(user: User) -> tuple[Embed, bool]:
         case _:
             emb.description = coolness_rd(user)
             return emb, True
+
+class BotCog(commands.Cog):
+    def __init__(self, bot: commands.Bot):
+        self.bot = bot
+
+    @commands.hybrid_command(aliases=["cool"])
+    async def coolness(self, ctx: Context[commands.Bot], user: User):
+        """Tests how cool a user is.
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        user: discord.User
+            The user to rate
+        """
+        emb, success = localcoolness(user)
+        if success:
+            await ctx.send(embed=emb)
+        else:
+            await ctx.send("You must mention an user in order to rate them !")
+        log.info(f"coolness triggered by [{ctx.message.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+
+async def setup(bot):
+    await bot.add_cog(BotCog(bot))
+    log.info(f"Cog added : coolness_cog")

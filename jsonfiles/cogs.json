@@ -1,0 +1,9 @@
+[
+  "cogs.general_cog",
+  "cogs.diceroll_cog",
+  "cogs.tips_cog",
+  "cogs.coolness_cog",
+
+  "cogs.messager_cog",
+  "cogs.technical_cog"
+]
