@@ -1,8 +1,8 @@
 [
   "cogs.general_cog",
-  "cogs.diceroll_cog",
+  "cogs.game_cog",
   "cogs.tips_cog",
-  "cogs.coolness_cog",
+  "cogs.rating_cog",
 
   "cogs.messager_cog",
   "cogs.technical_cog"

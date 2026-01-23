@@ -29,7 +29,7 @@ def coolness_rd(user: User) -> str:
     elif val >= 1:
         return f"[{val}%] {user.display_name} REALLY ain't cool."
     else:
-        return f"[{val}%] {user.display_name} ! GET YOUR BITCH ASS OUT !"
+        return f"[{val}%] {user.display_name} ! GET YOUR BITCH ASS OUT—"
 
 def localcoolness(user: User) -> tuple[Embed, bool]:
     if not user:
@@ -69,7 +69,7 @@ def localcoolness(user: User) -> tuple[Embed, bool]:
             emb.description = coolness_rd(user)
             return emb, True
 
-class CoolCog(commands.Cog):
+class Rating(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot: commands.Bot = bot
 
@@ -92,5 +92,5 @@ class CoolCog(commands.Cog):
         log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
 async def setup(bot):
-    await bot.add_cog(CoolCog(bot))
+    await bot.add_cog(Rating(bot))
     log.info(f"Cog added : coolness_cog")

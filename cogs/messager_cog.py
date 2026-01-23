@@ -10,11 +10,11 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
-class MessagerCog(commands.Cog):
+class Messager(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot: commands.Bot = bot
 
-    @commands.hybrid_group(aliases=["msg", "m"]) #TODO fix this shit
+    @commands.hybrid_group(aliases=["msg", "m"], fallback="messager")
     async def messager(self, ctx: Context[commands.Bot]):
         """Messager commands category.
 
@@ -32,7 +32,7 @@ class MessagerCog(commands.Cog):
         log.info(f"messager triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
     @messager.command(aliases=["w", "override", "over"])
-    async def write(self, ctx: Context[commands.Bot], *messageWrite: str):
+    async def write(self, ctx: Context[commands.Bot], *, messageWrite: str):
         """Writes a message to the messager.
 
         Parameters
@@ -52,17 +52,17 @@ class MessagerCog(commands.Cog):
         if not messageWrite:
             await ctx.send("Must provide a message !")
             return
-        msg = ""
-        for s in messageWrite:
-            msg += s + " "
+#        msg = ""
+#        for s in messageWrite:
+#            msg += s + " "
         with open(f"{getenv('BOT_ENV')}/jsonfiles/memory.json", "r") as mem:
             j = json.load(mem)
-        j['messager_message'] = msg
+        j['messager_message'] = messageWrite
         j['messager_user'] = ctx.author.id
         with open("jsonfiles/memory.json", "w") as mem:
             json.dump(j, mem, indent=2)
         await ctx.send("Message written ! Use `j:messager read` to read it.")
-        log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
+        log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{messageWrite}]")
 
     @messager.command(aliases=["r", "show", "see", "s"])
     async def read(self, ctx: Context[commands.Bot]):
@@ -170,5 +170,5 @@ class MessagerCog(commands.Cog):
             await ctx.interaction.delete_original_response()
 
 async def setup(bot):
-    await bot.add_cog(MessagerCog(bot))
+    await bot.add_cog(Messager(bot))
     log.info(f"Cog added : messager_cog")

@@ -10,11 +10,11 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
-class TechnicalCog(commands.Cog):
+class Technical(commands.Cog):
     def __init__(self, bot):
         self.bot: commands.Bot = bot
 
-    @commands.hybrid_group(aliases=["tech", "t"]) #TODO fix this shit
+    @commands.hybrid_group(aliases=["tech", "t"], fallback="technical")
     async def technical(self, ctx: Context[commands.Bot]):
         """Technical commands category.
 
@@ -27,7 +27,7 @@ class TechnicalCog(commands.Cog):
             await ctx.send("Technical commands for use by Arinone. Type `j:help technical` for further help.")
         log.info(f"technical triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
-    @technical.command(aliases=["csync", "treesync"])
+    @technical.command(aliases=["sync", "csync", "treesync"])
     async def commandsync(self, ctx: Context[commands.Bot]):
         """Synchronises slash commands if sent by Arinone.
 
@@ -66,5 +66,5 @@ class TechnicalCog(commands.Cog):
         log.info(f"messageas triggered by [{ctx.author.id}] at [{datetime.now()}] with args [{msg}]")
 
 async def setup(bot):
-    await bot.add_cog(TechnicalCog(bot))
+    await bot.add_cog(Technical(bot))
     log.info(f"Cog added : technical_cog")

@@ -1,5 +1,5 @@
 {
-  "game": [
+  "acedbeyond": [
     "You can press 'W' to walk.",
     "Lockers are really useful when an anomaly's coming for you.\nSo make sure to hide in them when you feel something's wrong !\nJust note that some entities may check the locker you hid in if they saw you do it in front of them !",
     "Some anomalies may check lockers by themselves, be careful !\nLuckily you can still hide in black lockers, considering locker scavengers are racist.",
@@ -14,7 +14,7 @@
     "Don't forget blue chests exists. They're magical chests that initially requires a key to be unlocked, but will gladly let you save an item for another time.\nJust take note that once you put (or swap) the item in the chest, it dissapears in that room !",
     "You mostly learn from the game by trial & error."
   ],
-  "real": [
+  "reallife": [
     "Some tips may be outright lies.",
     "Eevees are not 1/8 female/males. It's lies made up by the government so they can sell eevees for higher prices.",
     "Rooms : The Simulation is a factually horrible game. Even his owner will go crazy over the slightest criticism.",

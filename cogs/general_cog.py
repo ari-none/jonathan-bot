@@ -10,7 +10,7 @@ from os import getenv
 
 log = logging.getLogger("jonathan_bot")
 
-class GeneralCog(commands.Cog):
+class General(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot: commands.Bot = bot
 
@@ -39,5 +39,5 @@ class GeneralCog(commands.Cog):
         log.info(f"dance triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
 async def setup(bot):
-    await bot.add_cog(GeneralCog(bot))
+    await bot.add_cog(General(bot))
     log.info(f"Cog added : general_cog")
