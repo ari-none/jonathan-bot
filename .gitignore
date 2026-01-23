@@ -1,3 +1,6 @@
 *.log
+.env
 .venv/**
-.idea/
+.idea
+.idea/**
+/jsonfiles/data
