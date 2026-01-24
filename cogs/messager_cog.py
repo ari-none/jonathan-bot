@@ -157,7 +157,9 @@ class Messager(commands.Cog):
                 json.dump(banlist, f, indent=2) # To PyCharm : TextIO can be used for SupportsWrite[str] so please don't vomit warning lines in my code than you ^w^
             await ctx.send(f"User <@{user.id}> successfully banned from the Messager.")
         else:
-            await ctx.interaction.delete_original_response()
+            try:
+                await ctx.interaction.delete_original_response()
+            finally: pass
 
     # "umount" typa alias
     @messager.command(aliases=["uban"])

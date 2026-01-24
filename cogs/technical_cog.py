@@ -64,7 +64,9 @@ class Technical(commands.Cog):
             for s in messageWrite:
                 msg += s + ""
             await ctx.send(msg)
-        await ctx.interaction.delete_original_response()
+        try:
+            await ctx.interaction.delete_original_response()
+        finally: pass
         log.info(f"messageas triggered by [{ctx.author.id}] at [{datetime.now()}] with args [{msg}]")
 
 async def setup(bot):
