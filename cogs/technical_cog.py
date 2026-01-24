@@ -58,11 +58,11 @@ class Technical(commands.Cog):
 
     # Is reverse self-botting allowed ? I think so, so I made a way to RP as Jonathan on demand.
     @commands.command(aliases=["say", "s"], hidden=True)
-    async def messageas(self, ctx: Context, *messageWrite: str):
+    async def messageas(self, ctx: Context, *, messageWrite: str):
         msg = ""
         if ctx.author.id == 703959508489207838:
             for s in messageWrite:
-                msg += s + " "
+                msg += s + ""
             await ctx.send(msg)
         await ctx.interaction.delete_original_response()
         log.info(f"messageas triggered by [{ctx.author.id}] at [{datetime.now()}] with args [{msg}]")
