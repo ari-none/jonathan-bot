@@ -24,13 +24,8 @@ log.info(f"Jonathan bot script started at [{datetime.now()}]\n\n")
 load_dotenv(".env")
 
 # Pre-written bot config
+bot_intents = discord.Intents.all()
 bot_cmdPrefix = "j:"
-bot_intents = discord.Intents.default()
-bot_intents.members = True
-bot_intents.message_content = True
-bot_intents.guilds = True
-bot_intents.guild_typing = True
-bot_intents.integrations = True
 bot_desc = """Jonathan Bolbynsky bot for random stuff
 Made by Arinone"""
 
