@@ -1,12 +1,15 @@
 # Imports
 import logging
 from datetime import datetime
-from discord import Embed, Color, User
+from os import getenv
+from typing import Literal, get_args
+
+from discord import Embed, Color, User, File
 from discord.ext import commands
 from discord.ext.commands.context import Context
 
 import random as r
-from .extensions import coolness
+from .extensions import coolness, rps
 
 log = logging.getLogger("jonathan_bot")
 
@@ -64,6 +67,28 @@ class Games(commands.Cog):
         else:
             await ctx.send("You must mention an user in order to rate them !", delete_after=15)
         log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+
+    @commands.hybrid_command(aliases=["rps"])
+    async def rockpaperscissors(self, ctx: Context[commands.Bot], choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]):
+        """Plays a game of Rock Paper Scissors Fennec Gun Water Dude against Jonathan.
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]
+            The choice (or help to send the RPS diagram)
+        """
+        if choice == "help":
+            await ctx.send("Here's how the game works (via this extremely high quality diagram drawn by Arinone himself) !", file=File(f"{getenv('BOT_ENV')}/media/aris_rps.png"))
+        else:
+            bot_choice: str = rps.e_list[r.randint(1, len(rps.e_list))]
+
+            title, desc, color = rps.rps(choice, bot_choice)
+
+            emb = Embed(title=title, description=desc, color=color)
+            await ctx.send(f"I chose the {bot_choice}.", embed=emb)
+        log.info(f"rockpaperscissors triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{choice}]")
 
 async def setup(bot):
     await bot.add_cog(Games(bot))
