@@ -39,6 +39,27 @@ class General(commands.Cog):
         await ctx.send(file=File(f"{getenv('BOT_ENV')}/media/jonathan_dance.gif"))
         log.info(f"dance triggered by [{ctx.author.id}] at [{datetime.now()}]")
 
+    @commands.hybrid_command(aliases=["pfp"])
+    async def profilepicture(self, ctx: Context[commands.Bot], user: User):
+        """Returns a user's profile picture. (May not work for all users)
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        user: discord.User
+            The user to fetch the profile picture
+        """
+        pfp: File = None
+        success: bool = False
+        try:
+            pfp = await user.avatar.to_file(description=f"{user.name}'s profile picture.")
+            await ctx.send(f"Here's {user.display_name}'s profile picture :P", file=pfp)
+        except any:
+            await ctx.send(f"An error occurred when trying to fetch {user.display_name}'s profile picture. Sorry for the inconvenience.")
+
+        log.info(f"ping triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+
 async def setup(bot):
     await bot.add_cog(General(bot))
     log.info(f"Cog added : general_cog")
