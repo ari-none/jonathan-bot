@@ -1,14 +1,12 @@
 # Imports
-from discord.ext import commands
 import logging
-import json
 from datetime import datetime
-from discord import File, Embed, Color, User, Status
+from discord import Embed, Color, User
 from discord.ext import commands
 from discord.ext.commands.context import Context
-from os import getenv
 
 import random as r
+from .extensions import coolness
 
 log = logging.getLogger("jonathan_bot")
 
@@ -48,6 +46,24 @@ class Games(commands.Cog):
         result: Embed = diceroll(dices, faces)
         await ctx.send(embed=result)
         log.info(f"roll triggered by [{ctx.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
+
+    @commands.hybrid_command(aliases=["cool"])
+    async def coolness(self, ctx: Context[commands.Bot], user: User):
+        """Tests how cool a user is.
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        user: discord.User
+            The user to rate
+        """
+        emb, success = coolness.localcoolness(user)
+        if success:
+            await ctx.send(embed=emb)
+        else:
+            await ctx.send("You must mention an user in order to rate them !", delete_after=15)
+        log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
 async def setup(bot):
     await bot.add_cog(Games(bot))
