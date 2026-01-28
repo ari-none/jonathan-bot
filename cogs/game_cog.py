@@ -9,7 +9,7 @@ from discord.ext import commands
 from discord.ext.commands.context import Context
 
 import random as r
-from .extensions import coolness, rps
+from .extensions import coolness, rps, minesweeper
 
 log = logging.getLogger("jonathan_bot")
 
@@ -69,7 +69,8 @@ class Games(commands.Cog):
         log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
     @commands.hybrid_command(aliases=["rps"])
-    async def rockpaperscissors(self, ctx: Context[commands.Bot], choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]):
+    async def rockpaperscissors(self, ctx: Context[commands.Bot],
+                                choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]):
         """Plays a game of Rock Paper Scissors Fennec Gun Water Dude against Jonathan.
 
         Parameters
@@ -89,6 +90,29 @@ class Games(commands.Cog):
             emb = Embed(title=title, description=desc, color=color)
             await ctx.send(f"I chose the {bot_choice}.", embed=emb)
         log.info(f"rockpaperscissors triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{choice}]")
+
+    @commands.hybrid_command(aliases=["mines", "sweeper"])
+    async def minesweeper(self, ctx: Context[commands.Bot], rows: int=10, columns: int=10):
+        """Generates a minesweeper grid (from 5x5 to 10x10).
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        rows: int=10
+            The row length of the board (minimum 5, maximum 10)
+        columns: int=10
+            The column length of the board (minimum 5, maximum 10)
+        """
+        rows = clamp(rows, 5, 10)
+        columns = clamp(columns, 5, 10)
+
+        desc = minesweeper.randomgame(rows, columns)
+
+        emb = Embed(title=f"Here's a {rows}x{columns} grid !",
+                    description=desc, color=Color.light_gray())
+        await ctx.send(embed=emb)
+        log.info(f"minesweeper triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{rows}] arg2 [{columns}]")
 
 async def setup(bot):
     await bot.add_cog(Games(bot))
