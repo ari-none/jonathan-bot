@@ -91,7 +91,7 @@ class Games(commands.Cog):
             await ctx.send(f"I chose the {bot_choice}.", embed=emb)
         log.info(f"rockpaperscissors triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{choice}]")
 
-    @commands.hybrid_command(aliases=["rps"])
+    @commands.hybrid_command(aliases=["mines", "sweeper"])
     async def minesweeper(self, ctx: Context[commands.Bot], rows: int, columns: int):
         """Generates a minesweeper grid (from 5x5 to 40x40).
 
