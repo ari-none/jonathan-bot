@@ -69,8 +69,7 @@ class Messager(commands.Cog):
         with open("jsonfiles/data/memory.json", "w") as mem:
             json.dump(j, mem, indent=2)
         emb = Embed(color=Color.dark_blue(), title=":mailbox_closed: Letter sent to Messager :incoming_envelope:",
-                    description=msg)
-        emb.set_footer(text=":warning: If this message contains anything offensive or bad, you can always do `j:messager report` !")
+                    description=msg + "\n\n-# :warning: If this message contains anything offensive or bad, you can always do `j:messager report` !")
         await ctx.send("Letter sent ! Use `j:messager read` to read it.", embed=emb)
         log.info(f"messager write triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{msg}]")
 
@@ -90,8 +89,7 @@ class Messager(commands.Cog):
             await ctx.send("No letters unfortunately… Try again next time, or compose one with `j:messager write` !")
 
         emb = Embed(color=Color.dark_blue(), title=":incoming_envelope: Letter from the Messager :mailbox_with_mail:",
-                    description=mem['messager_message'])
-        emb.set_footer(text=f"This message was written by <@{mem['messager_user']}>")
+                    description=mem['messager_message'] + f"\n\n-# This message was written by <@{mem['messager_user']}>")
         await ctx.send(embed=emb)
 
     # Moderation 101
@@ -119,8 +117,7 @@ class Messager(commands.Cog):
 
         ari = await self.bot.fetch_user(703959508489207838)
         emb = Embed(color=Color.dark_blue(), title="Suspicious message from the Messager",
-                    description=mem['messager_message'])
-        emb.set_footer(text=f"This message was written by <@{mem['messager_user']}>")
+                    description=mem['messager_message'] + f"\n\n-# This message was written by <@{mem['messager_user']}>")
         await ari.send(f"New report from <@{ctx.author.id}> !!", embed=emb)
 
         mem['messager_message'] = "No messages for now…"

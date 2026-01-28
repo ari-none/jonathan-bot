@@ -1,14 +1,15 @@
 # Imports
-from discord.ext import commands
 import logging
-import json
 from datetime import datetime
-from discord import File, Embed, Color, User, Status
+from os import getenv
+from typing import Literal, get_args
+
+from discord import Embed, Color, User, File
 from discord.ext import commands
 from discord.ext.commands.context import Context
-from os import getenv
 
 import random as r
+from .extensions import coolness, rps, minesweeper
 
 log = logging.getLogger("jonathan_bot")
 
@@ -48,6 +49,70 @@ class Games(commands.Cog):
         result: Embed = diceroll(dices, faces)
         await ctx.send(embed=result)
         log.info(f"roll triggered by [{ctx.author.id}] at [{datetime.now()}] arg1 [{dices}] arg2 [{faces}]")
+
+    @commands.hybrid_command(aliases=["cool"])
+    async def coolness(self, ctx: Context[commands.Bot], user: User):
+        """Tests how cool a user is.
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        user: discord.User
+            The user to rate
+        """
+        emb, success = coolness.localcoolness(user)
+        if success:
+            await ctx.send(embed=emb)
+        else:
+            await ctx.send("You must mention an user in order to rate them !", delete_after=15)
+        log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
+
+    @commands.hybrid_command(aliases=["rps"])
+    async def rockpaperscissors(self, ctx: Context[commands.Bot],
+                                choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]):
+        """Plays a game of Rock Paper Scissors Fennec Gun Water Dude against Jonathan.
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]
+            The choice (or help to send the RPS diagram)
+        """
+        if choice == "help":
+            await ctx.send("Here's how the game works (via this extremely high quality diagram drawn by Arinone himself) !", file=File(f"{getenv('BOT_ENV')}/media/aris_rps.png"))
+        else:
+            bot_choice: str = rps.e_list[r.randint(1, len(rps.e_list))]
+
+            title, desc, color = rps.rps(choice, bot_choice)
+
+            emb = Embed(title=title, description=desc, color=color)
+            await ctx.send(f"I chose the {bot_choice}.", embed=emb)
+        log.info(f"rockpaperscissors triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{choice}]")
+
+    @commands.hybrid_command(aliases=["mines", "sweeper"])
+    async def minesweeper(self, ctx: Context[commands.Bot], rows: int=10, columns: int=10):
+        """Generates a minesweeper grid (from 5x5 to 10x10).
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        rows: int=10
+            The row length of the board (minimum 5, maximum 10)
+        columns: int=10
+            The column length of the board (minimum 5, maximum 10)
+        """
+        rows = clamp(rows, 5, 10)
+        columns = clamp(columns, 5, 10)
+
+        desc = minesweeper.randomgame(rows, columns)
+
+        emb = Embed(title=f"Here's a {rows}x{columns} grid !",
+                    description=desc, color=Color.light_gray())
+        await ctx.send(embed=emb)
+        log.info(f"minesweeper triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{rows}] arg2 [{columns}]")
 
 async def setup(bot):
     await bot.add_cog(Games(bot))

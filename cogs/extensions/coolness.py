@@ -1,15 +1,6 @@
 # Imports
-from discord.ext import commands
-import logging
-import json
-from datetime import datetime
 from discord import File, Embed, Color, User, Status
-from discord.ext import commands
-from discord.ext.commands.context import Context
-from os import getenv
 import random as r
-
-log = logging.getLogger("jonathan_bot")
 
 def coolness_rd(user: User) -> str:
     # Yes it's rigged.
@@ -71,29 +62,3 @@ def localcoolness(user: User) -> tuple[Embed, bool]:
         case _:
             emb.description = coolness_rd(user)
             return emb, True
-
-class Rating(commands.Cog):
-    def __init__(self, bot: commands.Bot):
-        self.bot: commands.Bot = bot
-
-    @commands.hybrid_command(aliases=["cool"])
-    async def coolness(self, ctx: Context[commands.Bot], user: User):
-        """Tests how cool a user is.
-
-        Parameters
-        ----------
-        ctx: commands.Context
-            The context of the command invocation
-        user: discord.User
-            The user to rate
-        """
-        emb, success = localcoolness(user)
-        if success:
-            await ctx.send(embed=emb)
-        else:
-            await ctx.send("You must mention an user in order to rate them !", delete_after=15)
-        log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
-
-async def setup(bot):
-    await bot.add_cog(Rating(bot))
-    log.info(f"Cog added : rating_cog")
