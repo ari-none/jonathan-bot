@@ -69,7 +69,8 @@ class Games(commands.Cog):
         log.info(f"coolness triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{user.id}]")
 
     @commands.hybrid_command(aliases=["rps"])
-    async def rockpaperscissors(self, ctx: Context[commands.Bot], choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]):
+    async def rockpaperscissors(self, ctx: Context[commands.Bot],
+                                choice: Literal["help", "rock", "paper", "scissors", "fennec", "gun", "water", "dude"]):
         """Plays a game of Rock Paper Scissors Fennec Gun Water Dude against Jonathan.
 
         Parameters
@@ -88,6 +89,28 @@ class Games(commands.Cog):
 
             emb = Embed(title=title, description=desc, color=color)
             await ctx.send(f"I chose the {bot_choice}.", embed=emb)
+        log.info(f"rockpaperscissors triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{choice}]")
+
+    @commands.hybrid_command(aliases=["rps"])
+    async def minesweeper(self, ctx: Context[commands.Bot], rows: int, columns: int):
+        """Generates a minesweeper grid (from 5x5 to 40x40).
+
+        Parameters
+        ----------
+        ctx: commands.Context
+            The context of the command invocation
+        rows: int
+            The row length of the board (minimum 5, maximum 40)
+        columns: int
+            The column length of the board (minimum 5, maximum 40)
+        """
+        rows = clamp(rows, 5, 40)
+        columns = clamp(columns, 5, 40)
+
+
+        emb = Embed(title=f"Here's a {rows}x{columns} grid ! Play by unspoilering the cells. (If you hit a bomb, you lose.)",
+                    description=desc, color=Color.light_gray())
+        await ctx.send(f"I chose the {bot_choice}.", embed=emb)
         log.info(f"rockpaperscissors triggered by [{ctx.author.id}] at [{datetime.now()}] with arg1 [{choice}]")
 
 async def setup(bot):
